@@ -4,10 +4,26 @@
   padding: 1rem;
   border-radius: var(--border-radius);
   color: var(--white);
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 700;
   line-height: 24.2px;
   text-align: center;
-
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.secondary {
+  background-color: var(--white) !important;
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  color: var(--blue);
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.2px;
+  text-align: center;
+  border: 1px solid var(--blue);
 }

@@ -1,13 +1,15 @@
-import styles from "../page/Trips.module.css";
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import TripsNavBar from "../components/TripsNavBar";
-function Trips() {
+
+const TripLayout = () => {
   return (
     <>
       <Navbar />
       <TripsNavBar />
+      <Outlet />
     </>
   );
-}
+};
 
-export default Trips;
+export default TripLayout;

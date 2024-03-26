@@ -1,4 +1,4 @@
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import styles from "./Map.module.css";
 const containerStyle = {
   height: "90vh",
@@ -21,7 +21,9 @@ const Map = () => {
         center={center}
         zoom={10}
         className={styles.mapContainer}
-      ></GoogleMap>
+      >
+        <Marker position={center} />
+      </GoogleMap>
     </>
   ) : (
     <></>

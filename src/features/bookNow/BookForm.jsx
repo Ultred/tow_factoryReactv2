@@ -18,14 +18,14 @@ const BookForm = () => {
             <div className={styles.bookwidth50}>
               <div className={styles.flexMap}>
                 <h3>Pick-Up Location:</h3>
-                <div className={styles.flexMap}>
+                <Link className={styles.flexMap} to={"/booking/pickup"}>
                   <img
                     className={styles.MapImage}
                     src="/src/assets/clickMap.svg"
                     alt=""
                   />
                   <p>Choose from Map</p>
-                </div>
+                </Link>
               </div>
               <InputField
                 placeholder={"Pick-Up Location"}
@@ -35,19 +35,24 @@ const BookForm = () => {
                 styletype={"primary"}
               />
               <h3>Contact Person:</h3>
-              <InputField />
+              <InputField
+                placeholder={"Contact Person's Name"}
+                type={"text"}
+                name={"contactPerson"}
+                styletype={"primary"}
+              />
             </div>
             <div className={styles.bookwidth50}>
               <div className={styles.flexMap}>
                 <h3>Drop-off Location</h3>
-                <div className={styles.flexMap}>
+                <Link className={styles.flexMap} to={"/booking/dropoff"}>
                   <img
                     className={styles.MapImage}
                     src="/src/assets/clickMap.svg"
                     alt=""
                   />
                   <p>Choose from Map</p>
-                </div>
+                </Link>
               </div>
               <InputField
                 placeholder={"Drop-off Location"}
@@ -57,16 +62,28 @@ const BookForm = () => {
                 styletype={"primary"}
               />
               <h3>Contact Phone Number:</h3>
-              <InputField />
+              <InputField
+                placeholder={"Contact Phone Number"}
+                type={"text"}
+                name={"phoneNumber"}
+                styletype={"primary"}
+              />
             </div>
           </div>
           <h3>Notes:</h3>
-          <InputField />
+          <InputField
+            placeholder={"Notes(Optional)"}
+            type={"text"}
+            name={"notes"}
+            styletype={"primary"}
+          />
         </div>
         <div className={styles.bookFormHorizontal}></div>
         <div className={styles.flexContButton}>
-          <Button buttonStyle={"primary"}>Set a Schedule</Button>
-          <Button buttonStyle={"primary"}>Book Now</Button>
+          <Button buttonStyle={"secondary"}>Set a Schedule</Button>
+          <Button type={"submit"} icon={"uphill"} buttonStyle={"primary"}>
+            Book Now
+          </Button>
         </div>
       </form>
     </div>

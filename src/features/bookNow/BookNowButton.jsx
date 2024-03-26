@@ -7,7 +7,7 @@ const BookNowButton = () => {
   };
   return (
     <button onClick={handleBookNow} className={styles.button}>
-      <img src="/src/assets/bookingIcon.svg" />
+      <img src="/src/assets/uphill.svg" alt="uphill" className={styles.icon} />
       Start your Booking
     </button>
   );
