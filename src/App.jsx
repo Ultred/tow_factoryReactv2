@@ -9,6 +9,7 @@ import Login from "./page/Login";
 import UserProfile from "./features/profile/UserProfile";
 import BookNowButton from "./features/bookNow/BookNowButton";
 import BookForm from "./features/bookNow/BookForm";
+import Trips from "./page/Trips"
 
 function App() {
   const router = createBrowserRouter([
@@ -31,13 +32,18 @@ function App() {
       ],
     },
     {
-      path: "/login",
+      path: "*",
       element: <Login />,
     },
     {
-      path: "*",
+      path: "/notFound",
       element: <NotFound />,
     },
+    
+    {
+      path:"/trips",
+      element: <Trips/>
+    }
   ]);
 
   return <RouterProvider router={router} />;

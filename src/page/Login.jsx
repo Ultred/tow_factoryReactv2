@@ -25,28 +25,34 @@ const Login = () => {
             src="/src/assets/towfactoryLogo.svg"
             alt="Tow Factory"
           />
-          <h2 className={styles.center}>Login</h2>
-          <h3 className={styles.center}>Welcome back, enter your details</h3>
-          <div>
-            <label htmlFor="">Email:</label>
-            <InputField
-              icon={"email"}
-              type={"email"}
-              name={"email"}
-              styletype={"primary"}
-              placeholder={"Enter your Email"}
-            />
+          <div className={styles.center}>
+            <h2>Login</h2>
+            <h3>Welcome back, enter your details</h3>
           </div>
-          <div>
-            <label htmlFor="">Password:</label>
-            <InputField
-              icon={"password"}
-              type={"password"}
-              name={"password"}
-              styletype={"primary"}
-              placeholder={"Enter your Password"}
-            />
+          
+          <div className={styles.loginCredentials}>
+            <div className={styles.email}>
+              <label htmlFor="">Email</label>
+              <InputField 
+                icon={"email"}
+                type={"email"}
+                name={"email"}
+                styletype={"primary"}
+                placeholder={"Enter your Email"}
+              />
+            </div>
+            <div className={styles.password}>
+              <label htmlFor="">Password</label>
+              <InputField
+                icon={"password"}
+                type={"password"}
+                name={"password"}
+                styletype={"primary"}
+                placeholder={"Password"}
+              />
+            </div>
           </div>
+          
           <div className={styles.flexCont}>
             <div className={styles.contsimple}>
               <input id="remember" type="checkbox" />
@@ -57,13 +63,13 @@ const Login = () => {
             </Link>
           </div>
           <Button buttonStyle={"primary"} type={"submit"} onClick={handleLogin}>
-            Login
+            Log in
           </Button>
 
           <p className={styles.noAccount}>
             Don&apos;t have an account?{" "}
             <Link className={styles.link} to="/signup">
-              SignUp
+              Sign Up!
             </Link>
           </p>
         </form>
