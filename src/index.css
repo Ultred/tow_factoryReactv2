@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+:root {
+  /* Status Palete */
+  --blue: #1c2cbc;
+  --lightBlue: #a2c7e3;
+  --yellow: #ffed03;
+  --white: #fffafa;
+  --black: #1b1b1b;
+  --red: #d41327;
+
+  /* Font */
+  --MONTSERRAT: "Montserrat", sans-serif;
+  --OPEN-SANS: "Open Sans", sans-serif;
+
+  /* others */
+  --border-radius: 2rem;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--MONTSERRAT);
+}

@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.center {
+  text-align: center;
+}
+.imgLeft {
+  width: 50%;
+}
+.formRight {
+  width: 50%;
+}
+.imgLoginPic {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+}
+.imgLoginLogo {
+  width: 8rem;
+  height: 6rem;
+  margin: 0 auto;
+}
+.formRight {
+  padding: 4rem 7.5rem;
+}
+.contsimple {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.flexCont {
+  display: flex;
+  justify-content: space-between;
+}
+.forgetP {
+  color: var(--red);
+}
+.noAccount {
+  text-align: center;
+}
+.link {
+  color: var(--blue);
+}
+
+@media (max-width: 1090px) {
+  .formRight {
+    padding: 4rem;
+  }
+}
+@media (max-width: 830px) {
+  .imgLeft {
+    display: none;
+  }
+  .formRight {
+    width: 100%;
+  }
+}
