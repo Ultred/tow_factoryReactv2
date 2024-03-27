@@ -1,11 +1,15 @@
 import styles from "./BookNowButton.module.css";
+import { useNavigate } from "react-router-dom";
+import { savePosition } from "../../context/positionMapState";
 
 const DropOffButton = () => {
-  const handleBookNow = () => {
-    console.log("handleBookNow");
+  const navigate = useNavigate();
+  const { dropOffPosition } = savePosition();
+  const handleDropOff = () => {
+    navigate("/dashboard/booknow");
   };
   return (
-    <button onClick={handleBookNow} className={styles.button}>
+    <button onClick={handleDropOff} className={styles.button}>
       <img
         src="/src/assets/dropoff.svg"
         alt="uphill"

@@ -1,6 +1,12 @@
 import styles from "./Button.module.css";
 
 const Button = ({ onClick, children, buttonStyle, type, icon }) => {
+  const handleClick = (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    if (onClick) {
+      onClick();
+    }
+  };
   const renderStyle = (style) => {
     switch (style) {
       case "primary":
@@ -21,7 +27,11 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   };
 
   return (
-    <button className={renderStyle(buttonStyle)} onClick={onClick} type={type}>
+    <button
+      className={renderStyle(buttonStyle)}
+      onClick={handleClick}
+      type={type}
+    >
       {icon && (
         <img src={renderIcon(icon)} alt={icon} style={{ width: "20px" }} />
       )}

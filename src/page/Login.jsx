@@ -7,7 +7,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate("/booking");
+    navigate("/dashboard");
   };
   return (
     <>
@@ -29,11 +29,11 @@ const Login = () => {
             <h2>Login</h2>
             <h3>Welcome back, enter your details</h3>
           </div>
-          
+
           <div className={styles.loginCredentials}>
             <div className={styles.email}>
               <label htmlFor="">Email</label>
-              <InputField 
+              <InputField
                 icon={"email"}
                 type={"email"}
                 name={"email"}
@@ -52,7 +52,7 @@ const Login = () => {
               />
             </div>
           </div>
-          
+
           <div className={styles.flexCont}>
             <div className={styles.contsimple}>
               <input id="remember" type="checkbox" />

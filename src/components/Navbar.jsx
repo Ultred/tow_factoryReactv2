@@ -14,7 +14,7 @@ const Navbar = () => {
         <ul className={styles.LinkFlex}>
           <li>
             <NavLink
-              to="/booking"
+              to="/dashboard"
               className={({ isActive }) =>
                 isActive ? `${styles.active}` : styles.navLink
               }

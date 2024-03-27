@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const BookNowButton = () => {
   const navigate = useNavigate();
   const handleBookNow = () => {
-    navigate("/booking/booknow");
+    navigate("/dashboard/booknow");
   };
   return (
     <button onClick={handleBookNow} className={styles.button}>

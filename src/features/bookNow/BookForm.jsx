@@ -3,13 +3,20 @@ import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import styles from "../bookNow/BookForm.module.css";
 import { MdOutlineCancel } from "react-icons/md";
+import { savePosition } from "../../context/positionMapState";
 const BookForm = () => {
+  const { pickUpPosition, dropOffPosition } = savePosition();
+
+  const handleTestOnly = () => {
+    console.log(pickUpPosition);
+    console.log(dropOffPosition);
+  };
   return (
     <div className={styles.bookFormCont}>
       <form className={styles.formStyle} action="">
         <div className={styles.FormTop}>
           <h2>Booking</h2>
-          <Link to="/booking">
+          <Link to="/dashboard">
             <MdOutlineCancel />
           </Link>
         </div>
@@ -18,7 +25,7 @@ const BookForm = () => {
             <div className={styles.bookwidth50}>
               <div className={styles.flexMap}>
                 <h3>Pick-Up Location:</h3>
-                <Link className={styles.flexMap} to={"/booking/pickup"}>
+                <Link className={styles.flexMap} to={"/dashboard/pickup"}>
                   <img
                     className={styles.MapImage}
                     src="/src/assets/clickMap.svg"
@@ -45,7 +52,7 @@ const BookForm = () => {
             <div className={styles.bookwidth50}>
               <div className={styles.flexMap}>
                 <h3>Drop-off Location</h3>
-                <Link className={styles.flexMap} to={"/booking/dropoff"}>
+                <Link className={styles.flexMap} to={"/dashboard/dropoff"}>
                   <img
                     className={styles.MapImage}
                     src="/src/assets/clickMap.svg"
@@ -80,7 +87,9 @@ const BookForm = () => {
         </div>
         <div className={styles.bookFormHorizontal}></div>
         <div className={styles.flexContButton}>
-          <Button buttonStyle={"secondary"}>Set a Schedule</Button>
+          <Button onClick={handleTestOnly} buttonStyle={"secondary"}>
+            Set a Schedule
+          </Button>
           <Button type={"submit"} icon={"uphill"} buttonStyle={"primary"}>
             Book Now
           </Button>

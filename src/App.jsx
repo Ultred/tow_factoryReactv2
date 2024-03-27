@@ -16,11 +16,11 @@ import Profile from "./page/Profile";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/booking",
+      path: "/dashboard",
       element: <DashboardLayout />,
       children: [
         {
-          path: "/booking",
+          path: "/dashboard",
           element: <BookNowButton />,
         },
         {
