@@ -12,3 +12,6 @@
   transform: translateX(-50%);
   position: fixed;
 }
+.icon {
+  width: 1.5rem;
+}
