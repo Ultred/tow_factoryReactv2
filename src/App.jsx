@@ -1,12 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//Layout
-// import TripLayout from "./layout/TripLayout";
 import HistoryLayout from "./layout/HistoryLayout";
 import DashboardLayout from "./layout/DashboardLayout";
 import ProfileLayout from "./layout/ProfileLayout";
-
-import ProfileLayout from "./layout/ProfileLayout";
-
 import NotFound from "./page/NotFound";
 import Login from "./page/Login";
 import BookNowButton from "./features/bookNow/BookNowButton";
@@ -49,12 +44,6 @@ function App() {
     {
       path: "/history",
       element: <HistoryLayout />,
-      // children: [
-      //   {
-      //     path: "/trips",
-      //     element: <Trips />,
-      //   },
-      // ],
     },
     {
       path: "/profile",
