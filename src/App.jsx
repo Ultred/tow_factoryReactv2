@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //Layout
-import TripLayout from "./layout/TripLayout";
+// import TripLayout from "./layout/TripLayout";
 import HistoryLayout from "./layout/HistoryLayout";
 import DashboardLayout from "./layout/DashboardLayout";
 import ProfileLayout from "./layout/ProfileLayout";
@@ -12,6 +12,7 @@ import BookForm from "./features/bookNow/BookForm";
 import PickUpButton from "./features/bookNow/PickUpButton";
 import DropOffButton from "./features/bookNow/DropOffButton";
 import Profile from "./page/Profile";
+import Trips from "./page/Trips";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,7 +40,7 @@ function App() {
     },
     {
       path: "/trips",
-      element: <TripLayout />,
+      element: <Trips />,
     },
     {
       path: "/history",

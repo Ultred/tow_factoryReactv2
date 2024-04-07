@@ -1,4 +1,3 @@
-import styles from "../page/Trips.module.css";
 import Navbar from "../components/Navbar";
 import TripsNavBar from "../components/TripsNavBar";
 import TripsTrackingOnChecking from "../components/TripsTrackingOnChecking";
@@ -10,6 +9,7 @@ function Trips (){
             <TripsNavBar/>
             <TripsTrackingOnChecking/>
             <TripsTrackingConfirmation/>
+            <div>hello</div>
         </>
     )
 }
