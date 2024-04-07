@@ -5,6 +5,8 @@ import HistoryLayout from "./layout/HistoryLayout";
 import DashboardLayout from "./layout/DashboardLayout";
 import ProfileLayout from "./layout/ProfileLayout";
 
+import ProfileLayout from "./layout/ProfileLayout";
+
 import NotFound from "./page/NotFound";
 import Login from "./page/Login";
 import BookNowButton from "./features/bookNow/BookNowButton";
@@ -18,9 +20,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/dashboard",
+      path: "/dashboard",
       element: <DashboardLayout />,
       children: [
         {
+          path: "/dashboard",
           path: "/dashboard",
           element: <BookNowButton />,
         },
@@ -64,9 +68,11 @@ function App() {
     },
     {
       path: "*",
+      path: "*",
       element: <Login />,
     },
     {
+      path: "/notFound",
       path: "/notFound",
       element: <NotFound />,
     },

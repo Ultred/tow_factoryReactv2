@@ -8,7 +8,6 @@ const TripLayout = () => {
       <Navbar />
       <TripsNavBar />
       <Outlet />
-      <div>TETSDUASGHDIA</div>
     </>
   );
 };
