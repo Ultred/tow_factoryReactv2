@@ -1,6 +1,14 @@
 import styles from "./InputField.module.css";
 
-const InputField = ({ onChange, type, name, styletype, placeholder, icon }) => {
+const InputField = ({
+  onChange,
+  type,
+  name,
+  styletype,
+  placeholder,
+  icon,
+  value,
+}) => {
   const renderStyles = (styletype, hasIcon) => {
     let inputStyle = styles.primary;
     if (hasIcon) {
@@ -37,6 +45,7 @@ const InputField = ({ onChange, type, name, styletype, placeholder, icon }) => {
       <input
         type={type}
         name={name}
+        value={value}
         className={renderStyles(styletype, !!icon)}
         placeholder={placeholder}
         onChange={onChange}

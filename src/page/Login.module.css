@@ -1,3 +1,4 @@
+
 .container {
   display: flex;
   width: 100%;
@@ -6,6 +7,42 @@
 }
 .center {
   text-align: center;
+}
+.center h2 {
+  font-family: "Montserrat";
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48.76px;
+  padding-top: 2rem;
+}
+.center h3{
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32.68px;
+  opacity: 50%;
+  padding-top: 1rem;
+}
+
+.loginCredentials {
+  padding-top: 3.5rem;
+}
+
+.email {
+  padding-bottom: 1.5rem;
+}
+.email label{
+  font-family: 'Montserrat';
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24.38px;
+}
+
+.password label{
+  font-family: 'Montserrat';
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24.38px;
 }
 .imgLeft {
   width: 50%;
@@ -31,21 +68,70 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.contsimple input[type="checkbox"] {
+  background-color: black;
+}
+
+.contsimple label {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.07px;
+}
+
 .flexCont {
   display: flex;
   justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 3.5rem;
 }
 .forgetP {
   color: var(--red);
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.07px;
+  
+
 }
 .noAccount {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.07px;
+  padding-top: 1.5rem;
   text-align: center;
+
 }
 .link {
   color: var(--blue);
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.07px;
+  text-align: left;
+
 }
 
-@media (max-width: 1090px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
+/* @media only screen and (min-width: 320px) {}
+
+@media only screen and (max-width: 1090px) {
   .formRight {
     padding: 4rem;
   }
@@ -57,4 +143,4 @@
   .formRight {
     width: 100%;
   }
-}
+} */
