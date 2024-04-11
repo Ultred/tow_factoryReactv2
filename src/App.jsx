@@ -15,11 +15,9 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/dashboard",
-      path: "/dashboard",
       element: <DashboardLayout />,
       children: [
         {
-          path: "/dashboard",
           path: "/dashboard",
           element: <BookNowButton />,
         },
@@ -57,11 +55,9 @@ function App() {
     },
     {
       path: "*",
-      path: "*",
       element: <Login />,
     },
     {
-      path: "/notFound",
       path: "/notFound",
       element: <NotFound />,
     },

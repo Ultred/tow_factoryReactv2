@@ -8,7 +8,7 @@ const BookForm = () => {
   const { pickUpPosition, dropOffPosition } = savePosition();
 
   const handleTestOnly = () => {
-    console.log(pickUpPosition);
+    console.log(pickUpPosition.placeName);
     console.log(dropOffPosition);
   };
   return (
@@ -38,10 +38,11 @@ const BookForm = () => {
                 placeholder={"Pick-Up Location"}
                 icon={"pickUp"}
                 type={"text"}
+                value={pickUpPosition.placeName}
                 name={"pickup"}
                 styletype={"primary"}
               />
-              <h3>Contact Person:</h3>
+              <h3>Insuranse:</h3>
               <InputField
                 placeholder={"Contact Person's Name"}
                 type={"text"}
@@ -65,6 +66,7 @@ const BookForm = () => {
                 placeholder={"Drop-off Location"}
                 icon={"dropoff"}
                 type={"text"}
+                value={dropOffPosition.placeName}
                 name={"dropoff"}
                 styletype={"primary"}
               />

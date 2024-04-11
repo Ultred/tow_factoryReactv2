@@ -33,8 +33,7 @@ const Map = () => {
     // Get the place name using Geocoder
     const geocoder = new window.google.maps.Geocoder(); // Create Geocoder instance
     const results = await geocoder.geocode({ location: newPosition }); // Use Geocoder instance
-    const placeName = results[0];
-    console.log(placeName);
+    const placeName = results.results[0].formatted_address;
     if (location.pathname === "/dashboard/pickup") {
       setPickUpPosition({ ...newPosition, placeName });
     } else if (location.pathname === "/dashboard/dropoff") {

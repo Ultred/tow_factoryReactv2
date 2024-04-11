@@ -1,0 +1,15 @@
+.buttondropoff {
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-weight: 600;
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+}

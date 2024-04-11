@@ -8,11 +8,20 @@
 :root {
   /* Status Palete */
   --blue: #1c2cbc;
+  --primary-color: #1c2cbc;
   --lightBlue: #a2c7e3;
   --yellow: #ffed03;
   --white: #fffafa;
   --black: #1b1b1b;
   --red: #d41327;
+
+  /* Status Palete */
+  --status-gray: #6a7b83;
+  --status-light-blue: #e6eced;
+  --status-darkyellow: #eb9f03;
+  --status-orange: #d84e00;
+  --status-green: #2b762a;
+  --blue-secondary: #1c2cbc;
 
   /* Font */
   --MONTSERRAT: "Montserrat", sans-serif;
@@ -20,6 +29,8 @@
 
   /* others */
   --border-radius: 2rem;
+  --border-radius-1: 1rem;
+  --padding-container: 0.5rem 2.5rem 0.5rem 2.5rem;
 }
 * {
   margin: 0;
