@@ -10,6 +10,7 @@ import PickUpButton from "./features/bookNow/PickUpButton";
 import DropOffButton from "./features/bookNow/DropOffButton";
 import Profile from "./page/Profile";
 import Trips from "./page/Trips";
+import SignUp from "./page/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -65,6 +66,14 @@ function App() {
       path: "/notFound",
       element: <NotFound />,
     },
+    {
+      path: "/signup",
+      path: "/signup",
+      element: < SignUp/>
+    },
+    
+    
+   
   ]);
 
   return <RouterProvider router={router} />;

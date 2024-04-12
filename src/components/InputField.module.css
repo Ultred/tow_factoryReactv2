@@ -16,6 +16,15 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.textIconInput {
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  left: 3%;
+  top: 50%;
+  opacity: 50%;
+  transform: translateY(-50%);
+}
 .withIcon {
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }

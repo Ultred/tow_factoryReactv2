@@ -13,6 +13,8 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
         return styles.primary;
       case "secondary":
         return styles.secondary;
+      case "tertiary":
+          return styles.tertiary;
       default:
         return styles.primary;
       // Add other cases to customize style

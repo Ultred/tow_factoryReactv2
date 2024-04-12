@@ -8,6 +8,7 @@ const InputField = ({
   placeholder,
   icon,
   value,
+  text,
 }) => {
   const renderStyles = (styletype, hasIcon) => {
     let inputStyle = styles.primary;
@@ -27,6 +28,10 @@ const InputField = ({
         return "/src/assets/dropoff.svg";
       case "pickUp":
         return "/src/assets/pickup.svg";
+      case "phFlag":
+        return "/src/assets/emojione_flag-for-philippines.png";
+        case "factory":
+          return "/src/assets/ph_factory-thin.png";
       default:
         return null;
     }
@@ -42,11 +47,17 @@ const InputField = ({
           alt="icon"
         />
       )}
+      {text && (
+        <div className={styles.textIconInput}>
+          <p>{text}</p>
+        </div>
+      )}
       <input
         type={type}
         name={name}
         value={value}
         className={renderStyles(styletype, !!icon)}
+        text={text}
         placeholder={placeholder}
         onChange={onChange}
       />

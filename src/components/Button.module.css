@@ -27,3 +27,19 @@
   text-align: center;
   border: 1px solid var(--blue);
 }
+.tertiary {
+  background-color: var(--blue) !important;
+  width: 50%;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  color: var(--white);
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.2px;
+  text-align: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
