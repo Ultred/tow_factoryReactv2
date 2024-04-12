@@ -6,10 +6,24 @@ const BookNowButton = () => {
     navigate("/dashboard/booknow");
   };
   return (
-    <button onClick={handleBookNow} className={styles.button}>
-      <img src="/src/assets/uphill.svg" alt="uphill" className={styles.icon} />
-      Start your Booking
-    </button>
+    <div className={styles.flexBookNow}>
+      <button onClick={handleBookNow} className={styles.button2}>
+        <img
+          src="/src/assets/RepairOnSite.svg"
+          alt="uphill"
+          className={styles.icon}
+        />
+        Repair on-site
+      </button>
+      <button onClick={handleBookNow} className={styles.button}>
+        <img
+          src="/src/assets/uphill.svg"
+          alt="uphill"
+          className={styles.icon}
+        />
+        Start your Booking
+      </button>
+    </div>
   );
 };
 
