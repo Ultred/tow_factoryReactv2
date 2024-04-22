@@ -15,6 +15,8 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
         return styles.secondary;
       case "tertiary":
           return styles.tertiary;
+      case "quinary":
+          return styles.quinary;
       default:
         return styles.primary;
       // Add other cases to customize style

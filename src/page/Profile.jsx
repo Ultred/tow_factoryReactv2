@@ -4,6 +4,7 @@ import styles from "./Profile.module.css";
 import { LuLock } from "react-icons/lu";
 import { FaArrowLeft } from "react-icons/fa";
 import { GoEye } from "react-icons/go";
+import phFlag from "../assets/emojione_flag-for-philippines.png";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -29,7 +30,7 @@ const Profile = () => {
                 </button>
               ) : (
                 <>
-                  <p>Insurance</p>
+                  <p></p>
                   <button onClick={handleEditProfile}>
                     {isEditing ? "Save Profile" : "Edit Profile"}
                   </button>
@@ -45,7 +46,7 @@ const Profile = () => {
             ) : (
               <img
                 className={styles.profilePic}
-                src="/src/assets/profile-icon.png"
+                src="/src/assets/Profilepic.png"
                 alt="profilePic"
               />
             )}
@@ -92,11 +93,21 @@ const Profile = () => {
               </div>
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Type:</h3>
-                <p className={styles.fontBold}>Admin</p>
+                <p className={styles.fontBold}>Insurance</p>
+              </div>
+              <div className={styles.profileContainerData}>
+                <div className={styles.profileBodyPosition}>
+                <h3 className={styles.fontLight}>Position:</h3>
+                <p className={styles.fontBold}>Agent</p>
+                </div>
               </div>
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Mobile Number:</h3>
-                <p className={styles.fontBold}>09615698142</p>
+                <div className={styles.mobileNumberCont}>
+                <img src={phFlag}/>
+                <p className={styles.countryCode}>+63</p>
+                <p className={styles.fontBold}>9615698142</p>
+                </div>
               </div>
               <div className={styles.profileBodyNameContEmail}>
                 <div className={styles.widthfull}>
@@ -122,12 +133,12 @@ const Profile = () => {
                 </p>
               </div>
               <button onClick={handleChangePass} className={styles.changePass}>
-                Change Pass
+                Change Password
               </button>
               {isEditing ? (
                 <Button buttonStyle={"quaternary"}>Save Profile</Button>
               ) : (
-                <Button buttonStyle={"tertiary"}>Log out</Button>
+                <Button buttonStyle={"quinary"}>Log out</Button>
               )}
             </div>
           )}

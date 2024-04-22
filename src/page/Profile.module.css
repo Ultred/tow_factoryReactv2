@@ -1,6 +1,8 @@
+/* Common styles */
 .profileContainer {
   padding: var(--padding-container);
 }
+
 .profileContainerBg {
   margin: 0 auto;
   max-width: 873px;
@@ -8,15 +10,15 @@
   padding: 1.5rem;
   border-radius: var(--border-radius-1);
 }
-.profileContainerData {
-}
+
 .profileContainerTop {
   background-color: var(--blue-secondary);
   border-radius: 5px 5px 0 0;
   padding: 1rem;
-  height: 9rem;
+  height: 7rem;
   position: relative;
 }
+
 .profileContainerTopName {
   display: flex;
   justify-content: space-between;
@@ -36,56 +38,98 @@
   position: absolute;
   outline: solid white 4px;
 }
+
 .profileContainerBody {
-  padding: 3rem 1rem 1rem 1rem;
+  padding: 4rem 1rem 1rem 1rem;
   background-color: var(--white);
   border-radius: 0 0 5px 5px;
 }
+
 .profileBodyNameCont {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
+  position: relative;
 }
+
+.profileContainerData::after,
+.profileContainerData::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 1px;
+  background-color: #bfbfbf;
+}
+
+.profileContainerData::after {
+  left: 0;
+  width: calc(50% - 50px);
+}
+
+.profileContainerData::before {
+  right: 0;
+  width: calc(50% - 10px);
+}
+
+.profileBodyPosition {
+  position: absolute;
+  right: 200px;
+  top: -75px;
+}
+
+.profileContainerData {
+  position: relative;
+}
+
 .profileBodyNameContEmail {
   display: flex;
   margin-bottom: 0.5rem;
   align-items: center;
   gap: 6rem;
 }
+
 .flexprofileBodyNameTooltip {
   display: flex;
   margin-bottom: 0.5rem;
   align-items: center;
   gap: 0.7rem;
 }
+
 .fontLight {
   color: var(--status-gray);
   font-weight: 400;
 }
+
 .fontBold {
   font-weight: 700;
   font-size: 1.15rem;
+  padding: 0.5rem;
 }
+
 .textLight {
   font-weight: 400;
   font-size: 0.9rem;
   font-family: var(--open-sans-font);
   color: #787878;
 }
+
 .fontInputEdit {
   border-bottom: solid 1px #bfbfbf;
   font-weight: 700;
   font-size: 1.15rem;
   width: 100%;
 }
+
 .widthfull {
   width: 100%;
 }
+
 .changePass {
   color: var(--primary-color);
   font-weight: 600;
   margin-bottom: 0.9rem;
 }
+
 /* Change Pass */
 .profileContainerTopNameBtn {
   display: flex;
@@ -93,6 +137,7 @@
   gap: 0.5rem;
   cursor: pointer;
 }
+
 .profileContainerChangePass {
   text-align: center;
   padding: 5rem 1rem 1rem 1rem;
@@ -102,17 +147,20 @@
 .textPassLeft {
   text-align: left;
 }
+
 .flexDivInput {
   position: relative;
   max-width: 25rem;
   margin: 1rem auto;
 }
+
 .iconLock {
   position: absolute;
   top: 45%;
   font-size: 1.3rem;
   left: 3%;
 }
+
 .inputPass {
   border-radius: var(--border-radius);
   background-color: var(--status-light-blue);
@@ -122,9 +170,55 @@
   outline: none;
   margin-bottom: 0.5rem;
 }
+
 .goeye {
   position: absolute;
   right: 3%;
   font-size: 1.3rem;
   top: 45%;
+}
+
+.flagIcon {
+  position: relative;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+.countryCode {
+  color: var(--status-gray);
+  font-weight: 400;
+  font-size: 1.15rem;
+  padding: 5px;
+  margin-top: 2px;
+}
+
+.mobileNumberCont {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+/* Media queries for responsiveness */
+
+@media screen and (max-width: 600px) {
+  .profileBodyPosition {
+    position: static;
+    margin-top: 1rem;
+    text-align: center; 
+  }
+  .profileContainerData{
+    position: static;
+    text-align: center;
+  }
+  .countryCode{
+    position: static;
+    text-align: center;
+  }
+
+  .profilePic {
+    position: static;
+    text-align: center;
+    margin-left: 8rem ; /* Adjust margin as needed */
+  }
 }
