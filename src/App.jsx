@@ -64,12 +64,8 @@ function App() {
     },
     {
       path: "/signup",
-      path: "/signup",
-      element: < SignUp/>
+      element: <SignUp />,
     },
-    
-    
-   
   ]);
 
   return <RouterProvider router={router} />;

@@ -1,10 +1,17 @@
 .flexBookNow {
+  margin-top: 3rem;
   display: flex;
   gap: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  position: fixed;
-  bottom: 10%;
+  align-items: center;
+  flex-direction: column;
+}
+.buttonContCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
+  margin-top: 5rem;
 }
 .button {
   display: flex;
@@ -14,7 +21,7 @@
   font-weight: 600;
   background-color: var(--blue);
   color: var(--white);
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.6rem;
   border-radius: var(--border-radius);
 }
 .icon {

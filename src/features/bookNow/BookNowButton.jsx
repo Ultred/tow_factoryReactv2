@@ -1,4 +1,7 @@
 import styles from "./BookNowButton.module.css";
+import DashboardPic from "../../assets/dashboardPic.svg";
+import RepairaonSite from "../../assets/RepairOnSite.svg";
+import Uphill from "../../assets/uphill.svg";
 import { useNavigate } from "react-router-dom";
 const BookNowButton = () => {
   const navigate = useNavigate();
@@ -7,22 +10,21 @@ const BookNowButton = () => {
   };
   return (
     <div className={styles.flexBookNow}>
-      <button onClick={handleBookNow} className={styles.button2}>
-        <img
-          src="/src/assets/RepairOnSite.svg"
-          alt="uphill"
-          className={styles.icon}
-        />
-        Repair on-site
-      </button>
-      <button onClick={handleBookNow} className={styles.button}>
-        <img
-          src="/src/assets/uphill.svg"
-          alt="uphill"
-          className={styles.icon}
-        />
-        Start your Booking
-      </button>
+      <img src={DashboardPic} alt="dashboard" />
+      <div className={styles.buttonContCenter}>
+        <button onClick={handleBookNow} className={styles.button}>
+          <img src={Uphill} alt="uphill" className={styles.icon} />
+          Start your Booking
+        </button>
+        <button onClick={handleBookNow} className={styles.button2}>
+          <img
+            src={RepairaonSite}
+            alt="Repair on Site"
+            className={styles.icon}
+          />
+          Repair on-site
+        </button>
+      </div>
     </div>
   );
 };

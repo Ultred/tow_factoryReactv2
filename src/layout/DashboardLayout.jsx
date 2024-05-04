@@ -5,8 +5,14 @@ const DashboardLayout = () => {
   return (
     <>
       <Navbar />
-      <Map />
-      <Outlet />
+      <div className="grid-cols-2 grid">
+        <div>
+          <Outlet />
+        </div>
+        <div>
+          <Map />
+        </div>
+      </div>
     </>
   );
 };
