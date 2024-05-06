@@ -12,14 +12,18 @@ const BookForm = () => {
     console.log(pickUpPosition.placeName);
     console.log(dropOffPosition);
   };
+
+  const handleNavigateBack = () => {
+    window.history.back();
+  };
   return (
     <div>
-      <div className={styles.flexTopBack}>
+      <div onClick={handleNavigateBack} className={styles.flexTopBack}>
         <FaArrowLeft /> Booking
       </div>
-      <div>
+      <div className={styles.bookFormPadding}>
         <div>
-          <div>
+          <div className={styles.flexh2Map}>
             <h2>Pick-Up Location:</h2>
             <Link className={styles.flexMap} to={"/dashboard/pickup"}>
               <img
@@ -40,7 +44,7 @@ const BookForm = () => {
           />
         </div>
         <div>
-          <div>
+          <div className={styles.flexh2Map}>
             <h2>Drop-Off Location:</h2>
             <Link className={styles.flexMap} to={"/dashboard/dropoff"}>
               <img
@@ -79,8 +83,8 @@ const BookForm = () => {
           />
         </div>
       </div>
-      <div></div>
-      <div>
+      <div className={styles.divider}></div>
+      <div className={`${styles.bookFormPadding} ${styles.flexButton}`}>
         <Button onClick={handleTestOnly} buttonStyle={"secondary"}>
           Set a Schedule
         </Button>

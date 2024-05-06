@@ -1,13 +1,14 @@
-import styles from "../components/TripsNavBar.module.css";
 import { useState } from "react";
+import styles from "./SecondNavbar.module.css";
 
-function TripsNavBar({ data }) {
-  const [selectedItem, setSelectedItem] = useState(0);
+const SecondNavbar = ({ data, onItemClick }) => {
+  const [selectedItem, setSelectedItem] = useState(data[0]);
 
   const handleItemClick = (index) => {
     setSelectedItem(index);
-    console.log(selectedItem);
+    onItemClick(index);
   };
+
   return (
     <>
       <div className={styles.tripsNavbar}>
@@ -15,10 +16,10 @@ function TripsNavBar({ data }) {
           {data.map((item, index) => (
             <li
               className={`${styles.tripsNavberLi} ${
-                selectedItem === index ? styles.selected : ""
+                selectedItem === item ? styles.selected : ""
               }`}
               key={index}
-              onClick={() => handleItemClick(index)}
+              onClick={() => handleItemClick(item)}
             >
               {item}
             </li>
@@ -27,6 +28,6 @@ function TripsNavBar({ data }) {
       </div>
     </>
   );
-}
+};
 
-export default TripsNavBar;
+export default SecondNavbar;

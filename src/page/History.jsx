@@ -1,13 +1,5 @@
-import React from 'react'
-import HistorySidebar from '../components/HistorySidebar'
-
 const History = () => {
-  return (
-    <>
-      <HistorySidebar/>
-      
-    </>
-  )
-}
+  return <></>;
+};
 
-export default History
+export default History;

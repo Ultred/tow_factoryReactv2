@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from "../components/Navbar.module.css";
 import profileIcon from "../assets/profile-icon.png";
-
+import notificationIcon from "../assets/notifications.svg";
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
@@ -43,9 +43,12 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <Link to="/profile">
-              <img src={profileIcon} className={styles.profileIcon} />
-            </Link>
+            <div className={styles.flexIconNavbar}>
+              <img src={notificationIcon} className={styles.profileIcon} />
+              <Link to="/profile">
+                <img src={profileIcon} className={styles.profileIcon} />
+              </Link>
+            </div>
           </li>
         </ul>
       </div>

@@ -1,0 +1,71 @@
+.cardDataContainer {
+  margin: 0 auto 1.5rem auto;
+  max-width: 50rem;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
+}
+
+.cardDataContainerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.cardDataContainerBody {
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 1rem 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flexDataContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.boldText {
+  font-weight: 700;
+}
+
+.cardDataContainerBodyLeft {
+  display: flex;
+  margin-top: 0.5rem;
+  flex-direction: column;
+  gap: 0.7rem;
+  border-right: 1px solid #e3e3e3;
+}
+/* Status Top Color Change */
+.inTransit {
+  background-color: var(--status-orange);
+}
+.cancelled {
+  background-color: var(--red);
+}
+.delivered {
+  background-color: var(--status-green);
+}
+.recieved {
+  background-color: var(--primary-color);
+}
+.inTransitP {
+  margin-left: 0.4rem;
+  color: var(--status-orange);
+}
+.cancelledP {
+  margin-left: 0.4rem;
+  color: var(--status-red);
+}
+.deliveredP {
+  margin-left: 0.4rem;
+  color: var(--status-green);
+}
+.recievedP {
+  margin-left: 0.4rem;
+  color: var(--primary-color);
+}

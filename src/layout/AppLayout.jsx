@@ -1,15 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import HistorySidebar from "../components/HistorySidebar";
 
-const HistoryLayout = () => {
+const AppLayout = () => {
   return (
     <>
       <Navbar />
-      <HistorySidebar />
       <Outlet />
     </>
   );
 };
 
-export default HistoryLayout;
+export default AppLayout;

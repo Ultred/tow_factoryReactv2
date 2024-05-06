@@ -1,17 +1,22 @@
-import styles from "../page/Trips.module.css";
-import Navbar from "../components/Navbar";
-import TripsNavBar from "../components/TripsNavBar";
-import TripsTrackingOnChecking from "../components/TripsTrackingOnChecking";
-import TripsTrackingConfirmation from "../components/TripsTrackingConfirmation";
-
+import CardData from "../components/CardData";
+import SecondNavbar from "../components/SecondNavbar";
+import { tripsData } from "../utils/DataSample";
 const TripsNavbarSampleData = ["ALL", "IN TRANSIT", "CANCELLED", "DELIVERED"];
 function Trips() {
+  const handleShowItemTrips = (data) => {
+    console.log(data);
+  };
   return (
     <>
-      <Navbar />
-      <TripsNavBar data={TripsNavbarSampleData} />
-      <TripsTrackingOnChecking />
-      <TripsTrackingConfirmation />
+      <SecondNavbar
+        onItemClick={handleShowItemTrips}
+        data={TripsNavbarSampleData}
+      />
+      <div>
+        {tripsData.map((data) => (
+          <CardData key={data.id} data={data} />
+        ))}
+      </div>
     </>
   );
 }

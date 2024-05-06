@@ -1,11 +1,10 @@
 .inputFieldContainer {
   position: relative;
   font-family: "Open Sans";
-  margin-top: 1rem;
 }
 .inputFieldContainer input {
   width: 100%;
-  height: 55px;
+  height: 53px;
   padding-left: 3.5rem;
 }
 .imgIconInput {

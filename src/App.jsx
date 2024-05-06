@@ -1,16 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HistoryLayout from "./layout/HistoryLayout";
 import DashboardLayout from "./layout/DashboardLayout";
-import ProfileLayout from "./layout/ProfileLayout";
 import NotFound from "./page/NotFound";
 import Login from "./page/Login";
 import BookNowButton from "./features/bookNow/BookNowButton";
 import BookForm from "./features/bookNow/BookForm";
 import PickUpButton from "./features/bookNow/PickUpButton";
 import DropOffButton from "./features/bookNow/DropOffButton";
-import Profile from "./page/Profile";
 import Trips from "./page/Trips";
+import History from "./page/History";
 import SignUp from "./page/SignUp";
+import AppLayout from "./layout/AppLayout";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,20 +36,16 @@ function App() {
       ],
     },
     {
-      path: "/trips",
-      element: <Trips />,
-    },
-    {
-      path: "/history",
-      element: <HistoryLayout />,
-    },
-    {
-      path: "/profile",
-      element: <ProfileLayout />,
+      path: "/",
+      element: <AppLayout />,
       children: [
         {
-          path: "/profile",
-          element: <Profile />,
+          path: "/trips",
+          element: <Trips />,
+        },
+        {
+          path: "/history",
+          element: <History />,
         },
       ],
     },
