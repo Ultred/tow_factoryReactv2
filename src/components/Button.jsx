@@ -1,38 +1,31 @@
 import styles from "./Button.module.css";
-
+import checkIcon from "../assets/checkIcon.svg";
+import crossIcon from "../assets/crossiconWhite.svg";
+import uphill from "../assets/uphill.svg";
 const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   const handleClick = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
     if (onClick) {
       onClick();
-    }
-  };
-  const renderStyle = (style) => {
-    switch (style) {
-      case "primary":
-        return styles.primary;
-      case "secondary":
-        return styles.secondary;
-      case "tertiary":
-          return styles.tertiary;
-      case "quinary":
-          return styles.quinary;
-      default:
-        return styles.primary;
-      // Add other cases to customize style
     }
   };
 
   const renderIcon = (icon) => {
     switch (icon) {
+      case "check":
+        return checkIcon;
+      case "cross":
+        return crossIcon;
       case "uphill":
-        return "/src/assets/uphill.svg";
+        return uphill;
+      default:
+        return null;
     }
   };
 
   return (
     <button
-      className={renderStyle(buttonStyle)}
+      className={`${styles.button} ${styles[buttonStyle]}`}
       onClick={handleClick}
       type={type}
     >

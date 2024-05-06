@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import styles from "./Profile.module.css";
-import { LuLock } from "react-icons/lu";
 import { FaArrowLeft } from "react-icons/fa";
-import { GoEye } from "react-icons/go";
-import phFlag from "../assets/emojione_flag-for-philippines.png";
-
+import toolTip from "../assets/tooltip.svg";
+import profileIcon from "../assets/profile-icon.png";
+import lockPass from "../assets/lockPass.svg";
+import PasswordField from "../components/PasswordField";
 const Profile = () => {
+  const navigate = useNavigate();
+
   const [isEditing, setIsEditing] = useState(false);
   const [isChangingPass, setisChangingPass] = useState(false);
   const handleEditProfile = () => {
@@ -15,6 +18,10 @@ const Profile = () => {
   const handleChangePass = () => {
     setisChangingPass((prev) => !prev);
   };
+  const handleLogoutTestOnlyNavigate = () => {
+    navigate("/login");
+  };
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileContainerBg}>
@@ -30,7 +37,7 @@ const Profile = () => {
                 </button>
               ) : (
                 <>
-                  <p></p>
+                  <p>Insurance</p>
                   <button onClick={handleEditProfile}>
                     {isEditing ? "Save Profile" : "Edit Profile"}
                   </button>
@@ -40,40 +47,44 @@ const Profile = () => {
             {isChangingPass ? (
               <img
                 className={styles.profilePic}
-                src="/src/assets/lockPass.svg"
+                src={lockPass}
                 alt="profilePic"
               />
             ) : (
               <img
                 className={styles.profilePic}
-                src="/src/assets/Profilepic.png"
+                src={profileIcon}
                 alt="profilePic"
               />
             )}
           </div>
           {isChangingPass ? (
             <div className={styles.profileContainerChangePass}>
-              <div className={styles.flexDivInput}>
-                <h2 className={styles.textPassLeft}>Old Password</h2>
-                <LuLock className={styles.iconLock} />
-                <input className={styles.inputPass} type="text" name="" id="" />
-                <GoEye className={styles.goeye} />
+              <div className={styles.marginTopBottom}>
+                <h2>Old Password</h2>
+                <PasswordField
+                  placeholder={"Old Password"}
+                  id={"oldPassword"}
+                />
               </div>
               <p className={styles.textLight}>
                 Your password today must be different from your previous
                 passwords.
               </p>
-              <div className={styles.flexDivInput}>
-                <h2 className={styles.textPassLeft}>New Password</h2>
-                <LuLock className={styles.iconLock} />
-                <input className={styles.inputPass} type="text" name="" id="" />
-                <GoEye className={styles.goeye} />
+              <div className={styles.marginTopBottom}>
+                <h2>New Password</h2>
+                <PasswordField
+                  placeholder={"New Password"}
+                  name="password"
+                  id={"newPassword"}
+                />
               </div>
-              <div className={styles.flexDivInput}>
-                <h2 className={styles.textPassLeft}>Retype Password</h2>
-                <LuLock className={styles.iconLock} />
-                <input className={styles.inputPass} type="text" name="" id="" />
-                <GoEye className={styles.goeye} />
+              <div className={styles.marginTopBottom}>
+                <h2>Retype Password</h2>
+                <PasswordField
+                  placeholder={"Retype Password"}
+                  id={"retypePassword"}
+                />
               </div>
               <Button buttonStyle={"quaternary"}>Save Password</Button>
             </div>
@@ -93,21 +104,11 @@ const Profile = () => {
               </div>
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Type:</h3>
-                <p className={styles.fontBold}>Insurance</p>
-              </div>
-              <div className={styles.profileContainerData}>
-                <div className={styles.profileBodyPosition}>
-                <h3 className={styles.fontLight}>Position:</h3>
-                <p className={styles.fontBold}>Agent</p>
-                </div>
+                <p className={styles.fontBold}>Admin</p>
               </div>
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Mobile Number:</h3>
-                <div className={styles.mobileNumberCont}>
-                <img src={phFlag}/>
-                <p className={styles.countryCode}>+63</p>
-                <p className={styles.fontBold}>9615698142</p>
-                </div>
+                <p className={styles.fontBold}>09615698142</p>
               </div>
               <div className={styles.profileBodyNameContEmail}>
                 <div className={styles.widthfull}>
@@ -126,19 +127,24 @@ const Profile = () => {
                 </div>
               </div>
               <div className={styles.flexprofileBodyNameTooltip}>
-                <img src="/src/assets/tooltip.svg" alt="tooltip" />
+                <img src={toolTip} alt="tooltip" />
                 <p className={styles.textLight}>
                   Your email will be used for sending a booking receipts and
                   updates of tow factory.
                 </p>
               </div>
               <button onClick={handleChangePass} className={styles.changePass}>
-                Change Password
+                Change Pass
               </button>
               {isEditing ? (
                 <Button buttonStyle={"quaternary"}>Save Profile</Button>
               ) : (
-                <Button buttonStyle={"quinary"}>Log out</Button>
+                <Button
+                  onClick={handleLogoutTestOnlyNavigate}
+                  buttonStyle={"tertiary"}
+                >
+                  Log out
+                </Button>
               )}
             </div>
           )}

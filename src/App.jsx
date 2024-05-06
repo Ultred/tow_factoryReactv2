@@ -10,6 +10,7 @@ import Trips from "./page/Trips";
 import History from "./page/History";
 import SignUp from "./page/SignUp";
 import AppLayout from "./layout/AppLayout";
+import Profile from "./page/Profile";
 
 function App() {
   const router = createBrowserRouter([
@@ -46,6 +47,10 @@ function App() {
         {
           path: "/history",
           element: <History />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
       ],
     },
