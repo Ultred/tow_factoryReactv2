@@ -2,14 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import styles from "../components/Navbar.module.css";
 import profileIcon from "../assets/profile-icon.png";
 import notificationIcon from "../assets/notifications.svg";
+import Logo from "../assets/towfactoryLogo.svg";
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <img
-        className={styles.imgLogo}
-        src="src/assets/towfactoryLogo.svg"
-        alt="Logo"
-      />
+      <img className={styles.imgLogo} src={Logo} alt="Logo" />
       <div className={styles.navButtons}>
         <ul className={styles.LinkFlex}>
           <li>

@@ -1,20 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import styles from "../bookNow/BookForm.module.css";
-import { MdOutlineCancel } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa6";
 import { savePosition } from "../../context/positionMapState";
+import { ModalStoreState } from "../../context/ModalStoreState";
+import ScheduleModal from "./ScheduleModal";
 const BookForm = () => {
   const { pickUpPosition, dropOffPosition } = savePosition();
-
+  const { openModal } = ModalStoreState();
+  const navigate = useNavigate();
   const handleTestOnly = () => {
     console.log(pickUpPosition.placeName);
     console.log(dropOffPosition);
+    openModal(<ScheduleModal />);
   };
 
   const handleNavigateBack = () => {
-    window.history.back();
+    navigate("/dashboard");
   };
   return (
     <div>
@@ -22,16 +25,16 @@ const BookForm = () => {
         <FaArrowLeft /> Booking
       </div>
       <div className={styles.bookFormPadding}>
-        <div>
+        <div className={styles.marginTop}>
           <div className={styles.flexh2Map}>
-            <h2>Pick-Up Location:</h2>
-            <Link className={styles.flexMap} to={"/dashboard/pickup"}>
+            <h2 className={styles.textH2}>Pick-Up Location:</h2>
+            <Link className={styles.flexMap} to={"/map/pickup"}>
               <img
                 className={styles.MapImage}
                 src="/src/assets/clickMap.svg"
                 alt=""
               />
-              <p>Choose from Map</p>
+              <p className={styles.mapTextBlue}>Choose from Map</p>
             </Link>
           </div>
           <InputField
@@ -43,16 +46,16 @@ const BookForm = () => {
             styletype={"primary"}
           />
         </div>
-        <div>
+        <div className={styles.marginTop}>
           <div className={styles.flexh2Map}>
-            <h2>Drop-Off Location:</h2>
-            <Link className={styles.flexMap} to={"/dashboard/dropoff"}>
+            <h2 className={styles.textH2}>Drop-Off Location:</h2>
+            <Link className={styles.flexMap} to={"/map/dropoff"}>
               <img
                 className={styles.MapImage}
                 src="/src/assets/clickMap.svg"
                 alt=""
               />
-              <p>Choose from Map</p>
+              <p className={styles.mapTextBlue}>Choose from Map</p>
             </Link>
           </div>
           <InputField
@@ -64,17 +67,17 @@ const BookForm = () => {
             styletype={"primary"}
           />
         </div>
-        <div>
-          <h2>Insurance:</h2>
+        <div className={styles.marginTop}>
+          <h2 className={styles.textH2}>EON:</h2>
           <InputField
-            placeholder={"Insurance"}
+            placeholder={"EON Number"}
             type={"text"}
             name={"dropoff"}
             styletype={"primary"}
           />
         </div>
-        <div>
-          <h2>Note:</h2>
+        <div className={styles.marginTop}>
+          <h2 className={styles.textH2}>Note:</h2>
           <InputField
             placeholder={"Notes"}
             type={"text"}
@@ -85,7 +88,11 @@ const BookForm = () => {
       </div>
       <div className={styles.divider}></div>
       <div className={`${styles.bookFormPadding} ${styles.flexButton}`}>
-        <Button onClick={handleTestOnly} buttonStyle={"secondary"}>
+        <Button
+          icon={"calendarGray"}
+          onClick={handleTestOnly}
+          buttonStyle={"secondary"}
+        >
           Set a Schedule
         </Button>
         <Button type={"submit"} icon={"uphill"} buttonStyle={"primary"}>

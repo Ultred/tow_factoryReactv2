@@ -55,7 +55,6 @@ const CardData = ({
         <h2>
           TRACKING NUMBER: <span>{trackingNumber}</span>
         </h2>
-        <p>CLIENT: CLIENT 1</p>
       </div>
       <div className={styles.cardDataContainerBody}>
         <div className={styles.cardDataContainerBodyLeft}>

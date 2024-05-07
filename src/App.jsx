@@ -11,8 +11,12 @@ import History from "./page/History";
 import SignUp from "./page/SignUp";
 import AppLayout from "./layout/AppLayout";
 import Profile from "./page/Profile";
+import MapLayout from "./layout/MapLayout";
+import { ModalStoreState } from "./context/ModalStoreState";
+import ModalMain from "./components/ModalMain";
 
 function App() {
+  const { isOpen, modalComponent } = ModalStoreState();
   const router = createBrowserRouter([
     {
       path: "/dashboard",
@@ -26,6 +30,12 @@ function App() {
           path: "bookNow",
           element: <BookForm />,
         },
+      ],
+    },
+    {
+      path: "/map",
+      element: <MapLayout />,
+      children: [
         {
           path: "pickup",
           element: <PickUpButton />,
@@ -68,7 +78,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      {isOpen && <ModalMain>{modalComponent}</ModalMain>}
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

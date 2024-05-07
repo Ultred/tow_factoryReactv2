@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import styles from "./Map.module.css";
 import { savePosition } from "../context/positionMapState";
 const containerStyle = {
-  height: "90vh",
+  height: "100% ",
   width: "100%",
 };
 
@@ -34,16 +34,15 @@ const Map = () => {
     const geocoder = new window.google.maps.Geocoder(); // Create Geocoder instance
     const results = await geocoder.geocode({ location: newPosition }); // Use Geocoder instance
     const placeName = results.results[0].formatted_address;
-    if (location.pathname === "/dashboard/pickup") {
+    if (location.pathname === "/map/pickup") {
       setPickUpPosition({ ...newPosition, placeName });
-    } else if (location.pathname === "/dashboard/dropoff") {
+    } else if (location.pathname === "/map/dropoff") {
       setDropOffPosition({ ...newPosition, placeName });
     }
   };
 
   const renderMarker =
-    location.pathname === "/dashboard/pickup" ||
-    location.pathname === "/dashboard/dropoff";
+    location.pathname === "/map/pickup" || location.pathname === "/map/dropoff";
 
   return isLoaded ? (
     <>

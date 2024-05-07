@@ -2,6 +2,7 @@ import styles from "./Button.module.css";
 import checkIcon from "../assets/checkIcon.svg";
 import crossIcon from "../assets/crossiconWhite.svg";
 import uphill from "../assets/uphill.svg";
+import calendarGray from "../assets/calendarGray.svg";
 const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   const handleClick = (event) => {
     event.preventDefault();
@@ -18,6 +19,8 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
         return crossIcon;
       case "uphill":
         return uphill;
+      case "calendarGray":
+        return calendarGray;
       default:
         return null;
     }

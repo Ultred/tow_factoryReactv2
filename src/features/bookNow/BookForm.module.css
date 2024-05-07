@@ -27,6 +27,17 @@
   background-color: var(--lightBlue);
   margin: 0.9rem 0;
 }
+.mapTextBlue {
+  font-weight: 600;
+  color: var(--blue);
+  font-size: 0.9rem;
+}
+.textH2 {
+  font-weight: 500;
+}
+.marginTop {
+  margin-top: 1rem;
+}
 .flexButton {
   display: flex;
   flex-direction: column;
