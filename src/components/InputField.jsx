@@ -30,8 +30,8 @@ const InputField = ({
         return "/src/assets/pickup.svg";
       case "phFlag":
         return "/src/assets/emojione_flag-for-philippines.png";
-        case "factory":
-          return "/src/assets/ph_factory-thin.png";
+      case "factory":
+        return "/src/assets/ph_factory-thin.png";
       default:
         return null;
     }
@@ -57,7 +57,6 @@ const InputField = ({
         name={name}
         value={value}
         className={renderStyles(styletype, !!icon)}
-        text={text}
         placeholder={placeholder}
         onChange={onChange}
       />
