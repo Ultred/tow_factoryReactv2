@@ -8,6 +8,9 @@ const BookNowButton = () => {
   const handleBookNow = () => {
     navigate("/dashboard/booknow");
   };
+  const handleRepairOnSite = () => {
+    navigate("/dashboard/repaironsite");
+  };
   return (
     <div className={styles.flexBookNow}>
       <img src={DashboardPic} alt="dashboard" />
@@ -16,7 +19,7 @@ const BookNowButton = () => {
           <img src={Uphill} alt="uphill" className={styles.icon} />
           Start your Booking
         </button>
-        <button onClick={handleBookNow} className={styles.button2}>
+        <button onClick={handleRepairOnSite} className={styles.button2}>
           <img
             src={RepairaonSite}
             alt="Repair on Site"

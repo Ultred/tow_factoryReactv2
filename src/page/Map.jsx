@@ -34,15 +34,16 @@ const Map = () => {
     const geocoder = new window.google.maps.Geocoder(); // Create Geocoder instance
     const results = await geocoder.geocode({ location: newPosition }); // Use Geocoder instance
     const placeName = results.results[0].formatted_address;
-    if (location.pathname === "/map/pickup") {
-      setPickUpPosition({ ...newPosition, placeName });
-    } else if (location.pathname === "/map/dropoff") {
+    if (location.pathname === "/test/pickup") {
+      setPickUpPosition({ ...newPosition, placeName }); //Change the test
+    } else if (location.pathname === "/test/dropoff") {
       setDropOffPosition({ ...newPosition, placeName });
     }
   };
 
   const renderMarker =
-    location.pathname === "/map/pickup" || location.pathname === "/map/dropoff";
+    location.pathname === "/test/pickup" ||
+    location.pathname === "/test/dropoff";
 
   return isLoaded ? (
     <>

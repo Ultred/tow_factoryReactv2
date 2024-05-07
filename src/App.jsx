@@ -14,6 +14,7 @@ import Profile from "./page/Profile";
 import MapLayout from "./layout/MapLayout";
 import { ModalStoreState } from "./context/ModalStoreState";
 import ModalMain from "./components/ModalMain";
+import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
 
 function App() {
   const { isOpen, modalComponent } = ModalStoreState();
@@ -29,6 +30,10 @@ function App() {
         {
           path: "bookNow",
           element: <BookForm />,
+        },
+        {
+          path: "repairOnSite",
+          element: <RepaironSiteForm />,
         },
       ],
     },

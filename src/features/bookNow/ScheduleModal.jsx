@@ -37,7 +37,7 @@ const ScheduleModal = () => {
         </div>
         <div className={styles.flexButton}>
           <Button
-            buttonStyle={"primary"}
+            buttonStyle={"secondary"}
             type={"submit"}
             onClick={handleCancel}
           >
