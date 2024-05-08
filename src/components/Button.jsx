@@ -1,8 +1,6 @@
 import styles from "./Button.module.css";
-import checkIcon from "../assets/checkIcon.svg";
-import crossIcon from "../assets/crossiconWhite.svg";
-import uphill from "../assets/uphill.svg";
-import calendarGray from "../assets/calendarGray.svg";
+import { FaCheck, FaTimes } from "react-icons/fa";
+
 const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   const handleClick = (event) => {
     event.preventDefault();
@@ -14,13 +12,9 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
   const renderIcon = (icon) => {
     switch (icon) {
       case "check":
-        return checkIcon;
+        return <FaCheck />;
       case "cross":
-        return crossIcon;
-      case "uphill":
-        return uphill;
-      case "calendarGray":
-        return calendarGray;
+        return <FaTimes />;
       default:
         return null;
     }
@@ -32,9 +26,7 @@ const Button = ({ onClick, children, buttonStyle, type, icon }) => {
       onClick={handleClick}
       type={type}
     >
-      {icon && (
-        <img src={renderIcon(icon)} alt={icon} style={{ width: "20px" }} />
-      )}
+      {icon && renderIcon(icon)}
       {children}
     </button>
   );

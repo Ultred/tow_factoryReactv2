@@ -15,6 +15,7 @@ import MapLayout from "./layout/MapLayout";
 import { ModalStoreState } from "./context/ModalStoreState";
 import ModalMain from "./components/ModalMain";
 import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const { isOpen, modalComponent } = ModalStoreState();
@@ -85,7 +86,9 @@ function App() {
 
   return (
     <>
-      {isOpen && <ModalMain>{modalComponent}</ModalMain>}
+      <AnimatePresence>
+        {isOpen && <ModalMain>{modalComponent}</ModalMain>}
+      </AnimatePresence>
       <RouterProvider router={router} />
     </>
   );
