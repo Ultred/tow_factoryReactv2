@@ -12,14 +12,10 @@ import SignUp from "./page/SignUp";
 import AppLayout from "./layout/AppLayout";
 import Profile from "./page/Profile";
 import MapLayout from "./layout/MapLayout";
-import { ModalStoreState } from "./context/ModalStoreState";
-import ModalMain from "./components/ModalMain";
 import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
-import { AnimatePresence } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const { isOpen, modalComponent } = ModalStoreState();
   const router = createBrowserRouter([
     {
       path: "/dashboard",
@@ -89,10 +85,6 @@ function App() {
     <>
       {/* Notifacation toaster */}
       <Toaster />
-      {/* Modal main */}
-      <AnimatePresence>
-        {isOpen && <ModalMain>{modalComponent}</ModalMain>}
-      </AnimatePresence>
       {/* Router */}
       <RouterProvider router={router} />
     </>

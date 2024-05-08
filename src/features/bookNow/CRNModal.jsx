@@ -3,27 +3,38 @@ import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import styles from "./CRNModal.module.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const CRNModal = () => {
+  const navigate = useNavigate();
   const { closeModal } = ModalStoreState();
+  const [crn, setCRN] = useState("");
   const handleCancel = () => {
     closeModal();
   };
   const handleProceed = () => {
-    toast.error("Please input CRN");
-    return;
+    if (!crn.trim()) {
+      toast.error("Please input CRN");
+      return;
+    }
+    navigate("/dashboard/booknow");
+    closeModal();
+  };
+  const handleCRNChange = (e) => {
+    setCRN(e.target.value);
   };
   return (
     <div className={styles.scheduleinfoContainer}>
       <div className={styles.scheduleInfoTop}>
         <h2 className={styles.scheduleInfoToph2}>CRN</h2>
       </div>
-      <div className={styles.scheduleInfoBody}>
+      <form className={styles.scheduleInfoBody}>
         <div className={styles.margin}>
           <div className={styles.flexTextMain}>
             Please input Control Reference Number (CRN) before proceed to
             booking
           </div>
-          <InputField text={"CRN"} type={"text"} />
+          <InputField onChange={handleCRNChange} text={"CRN"} type={"text"} />
         </div>
 
         <div className={styles.flexButton}>
@@ -43,7 +54,7 @@ const CRNModal = () => {
             Proceed
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
