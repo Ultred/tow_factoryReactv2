@@ -16,6 +16,7 @@ import { ModalStoreState } from "./context/ModalStoreState";
 import ModalMain from "./components/ModalMain";
 import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
 import { AnimatePresence } from "framer-motion";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { isOpen, modalComponent } = ModalStoreState();
@@ -86,9 +87,13 @@ function App() {
 
   return (
     <>
+      {/* Notifacation toaster */}
+      <Toaster />
+      {/* Modal main */}
       <AnimatePresence>
         {isOpen && <ModalMain>{modalComponent}</ModalMain>}
       </AnimatePresence>
+      {/* Router */}
       <RouterProvider router={router} />
     </>
   );

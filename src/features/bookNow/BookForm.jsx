@@ -6,11 +6,13 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { savePosition } from "../../context/positionMapState";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import ScheduleModal from "./ScheduleModal";
+import CancelBookingModal from "./CancelBookingModal";
+import SelectCustomInsurance from "../../components/SelectCustomInsurance";
 const BookForm = () => {
   const { pickUpPosition, dropOffPosition } = savePosition();
   const { openModal } = ModalStoreState();
   const navigate = useNavigate();
-  const handleTestOnly = () => {
+  const handleOpenScheduleModal = () => {
     console.log(pickUpPosition.placeName);
     console.log(dropOffPosition);
     openModal(<ScheduleModal />);
@@ -18,6 +20,11 @@ const BookForm = () => {
 
   const handleNavigateBack = () => {
     navigate("/dashboard");
+  };
+
+  const handleTestOnly = () => {
+    console.log("test");
+    openModal(<CancelBookingModal />);
   };
   return (
     <div>
@@ -77,25 +84,31 @@ const BookForm = () => {
           />
         </div>
         <div className={styles.marginTop}>
-          <h2 className={styles.textH2}>Note:</h2>
+          {/* <h2 className={styles.textH2}>Note:</h2>
           <InputField
             placeholder={"Notes"}
             type={"text"}
             name={"dropoff"}
             styletype={"primary"}
-          />
+          /> */}
+          <SelectCustomInsurance />
         </div>
       </div>
       <div className={styles.divider}></div>
       <div className={`${styles.bookFormPadding} ${styles.flexButton}`}>
         <Button
           icon={"calendarGray"}
-          onClick={handleTestOnly}
+          onClick={handleOpenScheduleModal}
           buttonStyle={"secondary"}
         >
           Set a Schedule
         </Button>
-        <Button type={"submit"} icon={"uphill"} buttonStyle={"primary"}>
+        <Button
+          type={"submit"}
+          onClick={handleTestOnly}
+          icon={"uphill"}
+          buttonStyle={"primary"}
+        >
           Start your Booking
         </Button>
       </div>

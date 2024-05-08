@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import { ModalStoreState } from "../../context/ModalStoreState";
@@ -6,6 +7,10 @@ const CRNModal = () => {
   const { closeModal } = ModalStoreState();
   const handleCancel = () => {
     closeModal();
+  };
+  const handleProceed = () => {
+    toast.error("Please input CRN");
+    return;
   };
   return (
     <div className={styles.scheduleinfoContainer}>
@@ -29,7 +34,12 @@ const CRNModal = () => {
           >
             Cancel
           </Button>
-          <Button icon={"check"} buttonStyle={"primary"} type={"submit"}>
+          <Button
+            icon={"check"}
+            onClick={handleProceed}
+            buttonStyle={"primary"}
+            type={"submit"}
+          >
             Proceed
           </Button>
         </div>
