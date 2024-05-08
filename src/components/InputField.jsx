@@ -1,5 +1,6 @@
 import styles from "./InputField.module.css";
-
+import clockGrayIcon from "../assets/clockGray.svg";
+import calendarGrayIcon from "../assets/calendarGray.svg";
 const InputField = ({
   onChange,
   type,
@@ -32,6 +33,10 @@ const InputField = ({
         return "/src/assets/emojione_flag-for-philippines.png";
       case "factory":
         return "/src/assets/ph_factory-thin.png";
+      case "calendarGray":
+        return calendarGrayIcon;
+      case "clockGray":
+        return clockGrayIcon;
       default:
         return null;
     }

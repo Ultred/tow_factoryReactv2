@@ -1,6 +1,6 @@
 .scheduleinfoContainer {
   max-width: 546px;
-  width: 28rem;
+  width: 33rem;
   box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
 }
 .scheduleInfoTop {
@@ -29,7 +29,6 @@
   margin-top: 2rem;
 }
 .scheduleInfoBodyh3 {
-  font-weight: 500;
 }
 .flexButton {
   margin-top: 1rem;

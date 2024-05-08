@@ -23,7 +23,11 @@ const ScheduleModal = () => {
               <p>Choose from calendar</p>
             </div>
           </div>
-          <InputField placeholder={"MM/DD/YY"} type={"text"} />
+          <InputField
+            icon={"calendarGray"}
+            placeholder={"MM/DD/YY"}
+            type={"text"}
+          />
         </div>
         <div className={styles.marginTop}>
           <div className={styles.flexTextMain}>
@@ -33,7 +37,7 @@ const ScheduleModal = () => {
               <p>Select Time Schedule</p>
             </div>
           </div>
-          <InputField placeholder={"HH:MM"} type={"text"} />
+          <InputField icon={"clockGray"} placeholder={"HH:MM"} type={"text"} />
         </div>
         <div className={styles.flexButton}>
           <Button

@@ -102,10 +102,37 @@ const Profile = () => {
                   <p className={styles.fontBold}>Juan Dela Cruz</p>
                 )}
               </div>
-              <div className={styles.profileBodyNameCont}>
-                <h3 className={styles.fontLight}>Type:</h3>
-                <p className={styles.fontBold}>Admin</p>
+              <div className="grid gap-12 grid-cols-2">
+                <div className={styles.profileBodyNameCont}>
+                  <h3 className={styles.fontLight}>Type:</h3>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className={styles.fontInputEdit}
+                      defaultValue="Insurance"
+                    />
+                  ) : (
+                    <>
+                      <p className={styles.fontBold}>Insurance</p>
+                    </>
+                  )}
+                </div>
+                <div className={styles.profileBodyNameCont}>
+                  <h3 className={styles.fontLight}>Position:</h3>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className={styles.fontInputEdit}
+                      defaultValue="Agent"
+                    />
+                  ) : (
+                    <>
+                      <p className={styles.fontBold}>Agent</p>
+                    </>
+                  )}
+                </div>
               </div>
+
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Mobile Number:</h3>
                 <p className={styles.fontBold}>09615698142</p>
