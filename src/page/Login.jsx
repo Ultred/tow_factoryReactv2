@@ -3,11 +3,45 @@ import { useNavigate } from "react-router-dom";
 import styles from "../page/Login.module.css";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import PasswordField from "../components/PasswordField";
+import { useMutation } from "@tanstack/react-query";
+import * as apiClient from "../service/ApiClient";
 const Login = () => {
   const navigate = useNavigate();
 
+  const [formData, setFormData] = useState({
+    emailAddress: "",
+    password: "",
+  });
+  const { emailAddress, password } = formData;
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: apiClient.postLogin,
+    onSuccess: () => {
+      toast.success("Login Successful");
+      navigate("/dashboard");
+    },
+    onError: () => {
+      toast.error("Login Failed");
+    },
+  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
   const handleLogin = () => {
-    navigate("/dashboard");
+    if (!emailAddress || !password) {
+      toast.error("Please input Email or Password");
+      return;
+    }
+    mutate(formData);
+    console.log(formData);
+    //navigate("/dashboard");
   };
   return (
     <>
@@ -34,22 +68,34 @@ const Login = () => {
             <div className={styles.email}>
               <label htmlFor="">Email</label>
               <InputField
+                onChange={handleInputChange}
+                id={"emailAddress"}
                 icon={"email"}
                 type={"email"}
-                name={"email"}
+                name={"emailAddress"}
                 styletype={"primary"}
+                value={formData.emailAddress}
                 placeholder={"Enter your Email"}
               />
             </div>
             <div className={styles.password}>
               <label htmlFor="">Password</label>
-              <InputField
+              <PasswordField
+                onChange={handleInputChange}
+                id={"password"}
+                name={"password"}
+                value={formData.password}
+                placeholder={"Password"}
+              />
+              {/* <InputField
+                onChange={handleInputChange}
                 icon={"password"}
                 type={"password"}
                 name={"password"}
+                value={formData.password}
                 styletype={"primary"}
                 placeholder={"Password"}
-              />
+              /> */}
             </div>
           </div>
 
@@ -62,10 +108,14 @@ const Login = () => {
               <p className={styles.forgetP}>Forgot Password</p>
             </Link>
           </div>
-          <Button buttonStyle={"primary"} type={"submit"} onClick={handleLogin}>
+          <Button
+            isLoading={isPending}
+            buttonStyle={"primary"}
+            type={"submit"}
+            onClick={handleLogin}
+          >
             Log in
           </Button>
-
           <p className={styles.noAccount}>
             Don&apos;t have an account?{" "}
             <Link className={styles.link} to="/signup">

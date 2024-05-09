@@ -2,6 +2,7 @@ import styles from "./InputField.module.css";
 import clockGrayIcon from "../assets/clockGray.svg";
 import calendarGrayIcon from "../assets/calendarGray.svg";
 const InputField = ({
+  id,
   onChange,
   type,
   name,
@@ -58,6 +59,7 @@ const InputField = ({
         </div>
       )}
       <input
+        id={id}
         type={type}
         name={name}
         value={value}

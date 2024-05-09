@@ -7,6 +7,15 @@ import Button from "../components/Button";
 import { useState } from "react";
 const SignUp = () => {
   const [stepsShowCont, setStepsShowCont] = useState(1);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    manufacturer: "",
+    plateNumber: "",
+    mobileNumber: "",
+  });
   const navigate = useNavigate();
 
   const handleSignUp = () => {
@@ -27,7 +36,7 @@ const SignUp = () => {
   return (
     <>
       <div className={styles.container}>
-        <form className={styles.formRight}>
+        <div className={styles.formRight}>
           <div onClick={handleBack} className={styles.back}>
             <IoMdArrowRoundBack /> Registration
           </div>
@@ -166,7 +175,7 @@ const SignUp = () => {
               Login!
             </Link>
           </p>
-        </form>
+        </div>
         <div className={styles.imgLeft}>
           <img
             className={styles.imgLoginPic}

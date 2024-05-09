@@ -2,7 +2,7 @@ import axios from "axios";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 const axiosConfig = {
-  withCredentials: true,
+  // withCredentials: true,
 };
 
 const makeRequest = async (url, method, data) => {
@@ -37,4 +37,7 @@ const makeRequest = async (url, method, data) => {
 };
 
 export const postRegister = async (data) =>
-  makeRequest("/api/users/register", "post", data);
+  makeRequest("api/v1/accounts/register", "post", data);
+
+export const postLogin = async (data) =>
+  makeRequest("api/v1/accounts/login", "post", data);
