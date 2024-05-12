@@ -1,17 +1,23 @@
 import axios from "axios";
+import useAuthStore from "../context/useAuthStore";
+
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const token = useAuthStore.getState().token;
 
 const axiosConfig = {
   // withCredentials: true,
+  headers: {
+    // Add Authorization header with your bearer token
+    Authorization: token,
+  },
 };
 
 const makeRequest = async (url, method, data) => {
-  //console.log(data);
   try {
     const config = {
       ...axiosConfig,
     };
-
+    console.log(data);
     if (data instanceof FormData) {
       config.headers = {
         "Content-Type": "multipart/form-data",
@@ -41,3 +47,6 @@ export const postRegister = async (data) =>
 
 export const postLogin = async (data) =>
   makeRequest("api/v1/accounts/login", "post", data);
+
+export const putChangePassword = async (userId, data) =>
+  makeRequest(`api/v1/accounts/${userId}/change-password`, "put", data);

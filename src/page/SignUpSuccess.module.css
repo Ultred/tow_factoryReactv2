@@ -1,0 +1,19 @@
+.containerParent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contentContainer {
+  text-align: center;
+}
+.h1 {
+  font-weight: 700;
+  font-size: 2rem;
+}
+.p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+}

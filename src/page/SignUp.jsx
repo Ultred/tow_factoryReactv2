@@ -5,26 +5,104 @@ import styles from "../page/SignUp.module.css";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { useState } from "react";
+import PasswordField from "../components/PasswordField";
+import toast from "react-hot-toast";
+import * as apiClient from "../service/ApiClient";
+import { useMutation } from "@tanstack/react-query";
+import FullScreenLoader from "../features/loaders/FullScreenLoader";
 const SignUp = () => {
   const [stepsShowCont, setStepsShowCont] = useState(1);
+  const navigate = useNavigate();
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["register"],
+    mutationFn: apiClient.postRegister,
+    onSuccess: () => {
+      navigate("/signup-success");
+    },
+    onError: (eror) => {
+      console.log(eror.message);
+      toast.error(eror.message);
+    },
+  });
   const [formData, setFormData] = useState({
-    email: "",
+    emailAddress: "",
     password: "",
     firstName: "",
     lastName: "",
     manufacturer: "",
-    plateNumber: "",
-    mobileNumber: "",
+    plateNo: "",
+    phoneNo: "",
+    confirmPassword: "",
   });
-  const navigate = useNavigate();
+  const {
+    emailAddress,
+    password,
+    firstName,
+    lastName,
+    manufacturer,
+    plateNo,
+    phoneNo,
+    confirmPassword,
+  } = formData;
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
   const handleSignUp = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Step 1: Validate email and password
+    if (stepsShowCont === 1) {
+      if (!emailAddress || !password) {
+        toast.error("Please input Email and Password");
+        return;
+      }
+      if (!emailRegex.test(emailAddress)) {
+        toast.error("Please enter a valid email address");
+        return;
+      }
+      if (password !== confirmPassword) {
+        toast.error("Passwords do not match");
+        return;
+      }
+    }
+
+    // Step 2: Validate first name and last name
+    if (stepsShowCont === 2) {
+      if (!firstName || !lastName) {
+        toast.error("Please input First Name and Last Name");
+        return;
+      }
+    }
+
+    // Step 3: Validate phone number
+    if (stepsShowCont === 3) {
+      if (!phoneNo) {
+        toast.error("Please input a Phone No.");
+        return;
+      }
+    }
+
+    // Step 4: Validate plate number and manufacturer
     if (stepsShowCont === 4) {
-      console.log("loading...");
+      if (!plateNo || !manufacturer) {
+        toast.error("Please input Plate No. and Manufacturer");
+        return;
+      }
+      //if Successful in All Validation
+      console.log(formData);
+      mutate(formData);
       return;
     }
+
+    // Proceed to the next step
     setStepsShowCont((prev) => prev + 1);
   };
+
   const handleBackShow = (num) => {
     setStepsShowCont(num);
   };
@@ -35,6 +113,8 @@ const SignUp = () => {
 
   return (
     <>
+      {/* Loader Animation Here */}
+      {isPending && <FullScreenLoader />}
       <div className={styles.container}>
         <div className={styles.formRight}>
           <div onClick={handleBack} className={styles.back}>
@@ -78,23 +158,36 @@ const SignUp = () => {
           {stepsShowCont === 1 && (
             <div className={styles.loginCredentials}>
               <div className={styles.email}>
-                <label htmlFor="">Email</label>
+                <label htmlFor="emailAddress">Email</label>
                 <InputField
+                  id={"emailAddress"}
                   icon={"email"}
+                  onChange={handleInputChange}
                   type={"email"}
-                  name={"email"}
+                  name={"emailAddress"}
+                  value={formData.emailAddress}
                   styletype={"primary"}
                   placeholder={"Enter your Email"}
                 />
               </div>
-              <div className={styles.password}>
-                <label htmlFor="">Password</label>
-                <InputField
-                  icon={"password"}
-                  type={"password"}
+              <div className={styles.email}>
+                <label htmlFor="password">Password</label>
+                <PasswordField
+                  onChange={handleInputChange}
+                  id={"password"}
                   name={"password"}
-                  styletype={"primary"}
+                  value={formData.password}
                   placeholder={"Password"}
+                />
+              </div>
+              <div className={styles.password}>
+                <label htmlFor="confirmpassword">Confirm Password</label>
+                <PasswordField
+                  onChange={handleInputChange}
+                  id={"confirmpassword"}
+                  name={"confirmPassword"}
+                  value={formData.confirmPassword}
+                  placeholder={"Confirm Password"}
                 />
               </div>
             </div>
@@ -102,21 +195,26 @@ const SignUp = () => {
           {stepsShowCont === 2 && (
             <div className={styles.loginCredentials}>
               <div className={styles.email}>
-                <label htmlFor="">First Name</label>
+                <label htmlFor="firstName">First Name</label>
                 <InputField
                   text={"FN"}
-                  type={"email"}
-                  name={"email"}
+                  id={"firstName"}
+                  type={"text"}
+                  onChange={handleInputChange}
+                  value={formData.firstName}
+                  name={"firstName"}
                   styletype={"primary"}
                   placeholder={"Enter your Email"}
                 />
               </div>
               <div className={styles.password}>
-                <label htmlFor="">Last Name</label>
+                <label htmlFor="lastName">Last Name</label>
                 <InputField
                   text={"LN"}
-                  type={"password"}
-                  name={"password"}
+                  type={"text"}
+                  name={"lastName"}
+                  onChange={handleInputChange}
+                  value={formData.lastName}
                   styletype={"primary"}
                   placeholder={"Password"}
                 />
@@ -127,10 +225,13 @@ const SignUp = () => {
           {stepsShowCont === 3 && (
             <div className={styles.loginCredentials}>
               <div className={styles.email}>
-                <label htmlFor="">Mobile Number</label>
+                <label htmlFor="phoneNo">Mobile Number</label>
                 <InputField
+                  id={"phoneNo"}
                   icon={"phFlag"}
-                  name={"mobileNumber"}
+                  value={formData.phoneNo}
+                  name={"phoneNo"}
+                  onChange={handleInputChange}
                   type={"number"}
                   styletype={"primary"}
                   placeholder={"+63"}
@@ -141,19 +242,27 @@ const SignUp = () => {
           {stepsShowCont === 4 && (
             <div className={styles.loginCredentials}>
               <div className={styles.email}>
-                <label htmlFor="">Manufacturer</label>
+                <label htmlFor="manufacturer">Manufacturer</label>
                 <InputField
                   icon={"factory"}
+                  id={"manufacturer"}
+                  onChange={handleInputChange}
                   name={"manufacturer"}
+                  type={"text"}
+                  value={formData.manufacturer}
                   styletype={"primary"}
                   placeholder={"Enter Name"}
                 />
               </div>
               <div className={styles.password}>
-                <label htmlFor="">Plate Number</label>
+                <label htmlFor="plateNo">Plate Number</label>
                 <InputField
                   text={"PN"}
-                  name={"plateNumber"}
+                  id={"plateNo"}
+                  type={"text"}
+                  onChange={handleInputChange}
+                  value={formData.plateNo}
+                  name={"plateNo"}
                   styletype={"primary"}
                   placeholder={"Plate Number"}
                 />
@@ -164,6 +273,7 @@ const SignUp = () => {
           <Button
             buttonStyle={"primary"}
             type={"submit"}
+            isLoading={isPending}
             onClick={handleSignUp}
           >
             Next

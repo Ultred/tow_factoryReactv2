@@ -14,6 +14,7 @@ import Profile from "./page/Profile";
 import MapLayout from "./layout/MapLayout";
 import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
 import { Toaster } from "react-hot-toast";
+import SignUpSuccess from "./page/SignUpSuccess";
 
 function App() {
   const router = createBrowserRouter([
@@ -70,6 +71,10 @@ function App() {
     {
       path: "*",
       element: <Login />,
+    },
+    {
+      path: "/signup-success",
+      element: <SignUpSuccess />,
     },
     {
       path: "/notFound",

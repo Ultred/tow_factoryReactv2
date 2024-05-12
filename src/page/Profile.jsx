@@ -1,4 +1,5 @@
 import { useState } from "react";
+import philFlag from "../assets/emojione_flag-for-philippines.png";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import styles from "./Profile.module.css";
@@ -7,9 +8,26 @@ import toolTip from "../assets/tooltip.svg";
 import profileIcon from "../assets/profile-icon.png";
 import lockPass from "../assets/lockPass.svg";
 import PasswordField from "../components/PasswordField";
+import useAuthStore from "../context/useAuthStore";
+import toast from "react-hot-toast";
+import ChangePassForm from "../features/profile/ChangePassForm";
+
 const Profile = () => {
   const navigate = useNavigate();
-
+  const [formData, setFormData] = useState({
+    data: {
+      firstName: "",
+      lastName: "",
+      phoneNum: "",
+      manufacturer: "",
+      position: "",
+      type: "",
+      email: "",
+      password: "",
+    },
+    userFile: null,
+  });
+  const { logout } = useAuthStore();
   const [isEditing, setIsEditing] = useState(false);
   const [isChangingPass, setisChangingPass] = useState(false);
   const handleEditProfile = () => {
@@ -18,7 +36,10 @@ const Profile = () => {
   const handleChangePass = () => {
     setisChangingPass((prev) => !prev);
   };
+
   const handleLogoutTestOnlyNavigate = () => {
+    logout();
+    toast.success("Logout Successful");
     navigate("/login");
   };
 
@@ -59,35 +80,7 @@ const Profile = () => {
             )}
           </div>
           {isChangingPass ? (
-            <div className={styles.profileContainerChangePass}>
-              <div className={styles.marginTopBottom}>
-                <h2>Old Password</h2>
-                <PasswordField
-                  placeholder={"Old Password"}
-                  id={"oldPassword"}
-                />
-              </div>
-              <p className={styles.textLight}>
-                Your password today must be different from your previous
-                passwords.
-              </p>
-              <div className={styles.marginTopBottom}>
-                <h2>New Password</h2>
-                <PasswordField
-                  placeholder={"New Password"}
-                  name="password"
-                  id={"newPassword"}
-                />
-              </div>
-              <div className={styles.marginTopBottom}>
-                <h2>Retype Password</h2>
-                <PasswordField
-                  placeholder={"Retype Password"}
-                  id={"retypePassword"}
-                />
-              </div>
-              <Button buttonStyle={"quaternary"}>Save Password</Button>
-            </div>
+            <ChangePassForm />
           ) : (
             <div className={styles.profileContainerBody}>
               <div className={styles.profileBodyNameCont}>
@@ -135,7 +128,25 @@ const Profile = () => {
 
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Mobile Number:</h3>
-                <p className={styles.fontBold}>09615698142</p>
+                {isEditing ? (
+                  // <div className={styles.flexContainer}>
+                  //   <div className={styles.flexFlag}>
+                  //     <img
+                  //       className={styles.flagPic}
+                  //       src={philFlag}
+                  //       alt="flag"
+                  //     />
+                  //     <span className={styles.countryCode}>+63</span>
+                  //   </div>
+                  <input
+                    type="text"
+                    className={styles.fontInputEdit}
+                    defaultValue="09615698142"
+                  />
+                ) : (
+                  // </div>
+                  <p className={styles.fontBold}>09615698142</p>
+                )}
               </div>
               <div className={styles.profileBodyNameContEmail}>
                 <div className={styles.widthfull}>

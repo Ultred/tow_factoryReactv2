@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import styles from "../page/Login.module.css";
 import InputField from "../components/InputField";
@@ -8,9 +9,11 @@ import toast from "react-hot-toast";
 import PasswordField from "../components/PasswordField";
 import { useMutation } from "@tanstack/react-query";
 import * as apiClient from "../service/ApiClient";
+import useAuthStore from "../context/useAuthStore";
+import FullScreenLoader from "../features/loaders/FullScreenLoader";
 const Login = () => {
   const navigate = useNavigate();
-
+  const { login } = useAuthStore();
   const [formData, setFormData] = useState({
     emailAddress: "",
     password: "",
@@ -19,12 +22,15 @@ const Login = () => {
   const { mutate, isPending } = useMutation({
     mutationKey: ["login"],
     mutationFn: apiClient.postLogin,
-    onSuccess: () => {
+    onSuccess: (response) => {
+      const decodedToken = jwtDecode(response.token);
+      console.log(decodedToken);
+      login(response.token);
       toast.success("Login Successful");
       navigate("/dashboard");
     },
-    onError: () => {
-      toast.error("Login Failed");
+    onError: (error) => {
+      toast.error(error.message || "Something went wrong. Please try again.");
     },
   });
   const handleInputChange = (e) => {
@@ -43,8 +49,11 @@ const Login = () => {
     console.log(formData);
     //navigate("/dashboard");
   };
+
   return (
     <>
+      {/* Loader Animation Here */}
+      {isPending && <FullScreenLoader />}
       <div className={styles.container}>
         <div className={styles.imgLeft}>
           <img
