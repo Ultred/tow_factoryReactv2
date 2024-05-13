@@ -1,5 +1,6 @@
 import styles from "./DropOffButton.module.css";
 import { useNavigate } from "react-router-dom";
+import { MdLocationPin } from "react-icons/md";
 import { savePosition } from "../../context/positionMapState";
 
 const DropOffButton = () => {
@@ -10,11 +11,7 @@ const DropOffButton = () => {
   };
   return (
     <button onClick={handleDropOff} className={styles.buttondropoff}>
-      <img
-        src="/src/assets/dropoff.svg"
-        alt="uphill"
-        className="w-6 text-white"
-      />
+      <MdLocationPin className="text-2xl text-white" />
       Place Drop-off Location
     </button>
   );

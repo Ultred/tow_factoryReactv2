@@ -1,15 +1,11 @@
 import { useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import styles from "./ChangePass.module.css";
 import PasswordField from "../../components/PasswordField";
 import Button from "../../components/Button";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import * as apiClient from "../../service/ApiClient";
-import useAuthStore from "../../context/useAuthStore";
 const ChangePassForm = () => {
-  const { token } = useAuthStore();
-
   const { mutate, isPending } = useMutation({
     mutationKey: ["changePassword"],
     mutationFn: apiClient.putChangePassword,
@@ -47,19 +43,18 @@ const ChangePassForm = () => {
       toast.error("Please input Required Fields");
       return;
     }
+    if (newPassword.length < 8) {
+      toast.error("New Password must be at least 8 characters");
+      return;
+    }
     if (newPassword !== confirmNewPassword) {
       toast.error("New password and confirm new password do not match");
       return;
     }
-    const decodedToken = jwtDecode(token);
-    const userId = decodedToken.userId;
-    //console.log(formDataPass);
-    //Make it a formData
+
     const formData = new FormData();
-    formData.append("oldPassword", oldPassword);
-    formData.append("newPassword", newPassword);
-    formData.append("confirmNewPassword", confirmNewPassword);
-    mutate(userId, formData);
+    formData.append("data", JSON.stringify(formDataPass.data));
+    mutate(formData);
   };
   return (
     <div className={styles.profileContainerChangePass}>

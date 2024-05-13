@@ -14,18 +14,15 @@ import ChangePassForm from "../features/profile/ChangePassForm";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formDataEdit, setFormDataEdit] = useState({
     data: {
       firstName: "",
       lastName: "",
       phoneNum: "",
-      manufacturer: "",
       position: "",
       type: "",
       email: "",
-      password: "",
     },
-    userFile: null,
   });
   const { logout } = useAuthStore();
   const [isEditing, setIsEditing] = useState(false);
