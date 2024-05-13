@@ -15,6 +15,7 @@ import MapLayout from "./layout/MapLayout";
 import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
 import { Toaster } from "react-hot-toast";
 import SignUpSuccess from "./page/SignUpSuccess";
+import WaitBookNow from "./features/bookNow/WaitBookNow";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,7 +38,7 @@ function App() {
       ],
     },
     {
-      path: "/map",
+      path: "/dashboard",
       element: <MapLayout />,
       children: [
         {
@@ -47,6 +48,10 @@ function App() {
         {
           path: "dropoff",
           element: <DropOffButton />,
+        },
+        {
+          path: "wait",
+          element: <WaitBookNow />,
         },
       ],
     },

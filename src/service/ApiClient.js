@@ -52,3 +52,6 @@ export const postLogin = async (data) =>
 
 export const putChangePassword = async (data) =>
   makeRequest(`api/v1/accounts/${getUserId()}/change-password`, "put", data);
+
+export const getSingleProfile = async () =>
+  makeRequest(`api/v1/users/${getUserId()}/findById`, "get");

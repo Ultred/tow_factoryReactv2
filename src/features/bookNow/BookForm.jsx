@@ -1,13 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import styles from "../bookNow/BookForm.module.css";
 import { FaArrowLeft } from "react-icons/fa6";
 import { savePosition } from "../../context/positionMapState";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import ScheduleModal from "./ScheduleModal";
-import CancelBookingModal from "./CancelBookingModal";
-import SelectCustomInsurance from "../../components/SelectCustomInsurance";
+import Button2Custom from "../../components/Button2Custom";
 const BookForm = () => {
   const { pickUpPosition, dropOffPosition } = savePosition();
   const { openModal } = ModalStoreState();
@@ -22,9 +20,8 @@ const BookForm = () => {
     navigate("/dashboard");
   };
 
-  const handleTestOnly = () => {
-    console.log("test");
-    openModal(<CancelBookingModal />);
+  const handleBookNow = () => {
+    navigate("/dashboard/wait");
   };
   return (
     <div>
@@ -35,7 +32,7 @@ const BookForm = () => {
         <div className={styles.marginTop}>
           <div className={styles.flexh2Map}>
             <h2 className={styles.textH2}>Pick-Up Location:</h2>
-            <Link className={styles.flexMap} to={"/map/pickup"}>
+            <Link className={styles.flexMap} to={"/dashboard/pickup"}>
               <img
                 className={styles.MapImage}
                 src="/src/assets/clickMap.svg"
@@ -56,7 +53,7 @@ const BookForm = () => {
         <div className={styles.marginTop}>
           <div className={styles.flexh2Map}>
             <h2 className={styles.textH2}>Drop-Off Location:</h2>
-            <Link className={styles.flexMap} to={"/map/dropoff"}>
+            <Link className={styles.flexMap} to={"/dashboard/dropoff"}>
               <img
                 className={styles.MapImage}
                 src="/src/assets/clickMap.svg"
@@ -84,33 +81,39 @@ const BookForm = () => {
           />
         </div>
         <div className={styles.marginTop}>
-          {/* <h2 className={styles.textH2}>Note:</h2>
+          <h2 className={styles.textH2}>Note:</h2>
           <InputField
-            placeholder={"Notes"}
+            placeholder={"Make a Note..."}
             type={"text"}
             name={"dropoff"}
             styletype={"primary"}
-          /> */}
-          <SelectCustomInsurance />
+          />
         </div>
       </div>
-      <div className={styles.divider}></div>
+      <div className={styles.divider}>
+        <p className={styles.fontP}>
+          ETA: <span className={styles.textFontBlue}>10-15 Mins</span>
+        </p>
+        <p className={styles.fontP}>
+          Amount: <span className={styles.textFontBlue}>P1500</span>
+        </p>
+      </div>
       <div className={`${styles.bookFormPadding} ${styles.flexButton}`}>
-        <Button
-          icon={"calendarGray"}
+        <Button2Custom
+          icon={"calendar"}
           onClick={handleOpenScheduleModal}
           buttonStyle={"secondary"}
         >
           Set a Schedule
-        </Button>
-        <Button
+        </Button2Custom>
+        <Button2Custom
           type={"submit"}
-          onClick={handleTestOnly}
+          onClick={handleBookNow}
           icon={"uphill"}
           buttonStyle={"primary"}
         >
-          Start your Booking
-        </Button>
+          Book Now
+        </Button2Custom>
       </div>
     </div>
   );

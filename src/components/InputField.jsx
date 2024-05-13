@@ -14,6 +14,9 @@ const InputField = ({
 }) => {
   const renderStyles = (styletype, hasIcon) => {
     let inputStyle = styles.primary;
+    if (styletype === "secondary") {
+      inputStyle = styles.secondary;
+    }
     if (hasIcon) {
       inputStyle += ` ${styles.withIcon}`;
     }

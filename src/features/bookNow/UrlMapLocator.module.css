@@ -1,0 +1,21 @@
+.urlCont {
+  position: fixed;
+  color: black;
+  border: 3px solid var(--primary-color);
+  border-width: 3px 0 3px 3px;
+  right: 0;
+  font-size: 0.8rem;
+  padding: 1rem 1.4rem;
+  border-radius: 2rem 0 0 2rem;
+  top: 23%;
+  background-color: white;
+  z-index: 999;
+}
+.url {
+  font-weight: 600;
+}
+.urlUnderline {
+  margin-left: 0.3rem;
+  text-decoration: underline;
+  color: var(--primary-color);
+}

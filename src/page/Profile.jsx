@@ -1,35 +1,28 @@
 import { useState } from "react";
-import philFlag from "../assets/emojione_flag-for-philippines.png";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import styles from "./Profile.module.css";
 import { FaArrowLeft } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import * as apiClient from "../service/ApiClient";
+import useAuthStore from "../context/useAuthStore";
+import ChangePassForm from "../features/profile/ChangePassForm";
+import SmallLoader from "../features/loaders/SmallLoader";
+import Button from "../components/Button";
 import toolTip from "../assets/tooltip.svg";
 import profileIcon from "../assets/profile-icon.png";
 import lockPass from "../assets/lockPass.svg";
-import PasswordField from "../components/PasswordField";
-import useAuthStore from "../context/useAuthStore";
-import toast from "react-hot-toast";
-import ChangePassForm from "../features/profile/ChangePassForm";
+import styles from "./Profile.module.css";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [formDataEdit, setFormDataEdit] = useState({
-    data: {
-      firstName: "",
-      lastName: "",
-      phoneNum: "",
-      position: "",
-      type: "",
-      email: "",
-    },
-  });
   const { logout } = useAuthStore();
   const [isEditing, setIsEditing] = useState(false);
   const [isChangingPass, setisChangingPass] = useState(false);
+
   const handleEditProfile = () => {
     setIsEditing((prev) => !prev);
   };
+
   const handleChangePass = () => {
     setisChangingPass((prev) => !prev);
   };
@@ -39,6 +32,17 @@ const Profile = () => {
     toast.success("Logout Successful");
     navigate("/login");
   };
+
+  const {
+    data: profile,
+    isLoading,
+    isFetching,
+    isError,
+  } = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: apiClient.getSingleProfile,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <div className={styles.profileContainer}>
@@ -62,35 +66,54 @@ const Profile = () => {
                 </>
               )}
             </div>
-            {isChangingPass ? (
-              <img
-                className={styles.profilePic}
-                src={lockPass}
-                alt="profilePic"
-              />
-            ) : (
-              <img
-                className={styles.profilePic}
-                src={profileIcon}
-                alt="profilePic"
-              />
-            )}
+            <img
+              className={styles.profilePic}
+              src={isChangingPass ? lockPass : profileIcon}
+              alt="profilePic"
+            />
           </div>
+          {isError && (
+            <div className={styles.error}>
+              <p>Error: Unable to fetch profile data.</p>
+            </div>
+          )}
           {isChangingPass ? (
             <ChangePassForm />
+          ) : isLoading || isFetching ? (
+            <div className="flex justify-center items-center min-h-[300px]">
+              <SmallLoader />
+            </div>
           ) : (
             <div className={styles.profileContainerBody}>
-              <div className={styles.profileBodyNameCont}>
-                <h3 className={styles.fontLight}>Name:</h3>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    className={styles.fontInputEdit}
-                    defaultValue="Juan Dela Cruz"
-                  />
-                ) : (
-                  <p className={styles.fontBold}>Juan Dela Cruz</p>
-                )}
+              <div className="grid gap-12 grid-cols-2 mt-5">
+                <div className={styles.profileBodyNameCont}>
+                  <h3 className={styles.fontLight}>First Name:</h3>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className={styles.fontInputEdit}
+                      defaultValue={profile.result.firstName}
+                    />
+                  ) : (
+                    <p className={styles.fontBold}>
+                      {profile.result.firstName}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.profileBodyNameCont}>
+                  <h3 className={styles.fontLight}>Last Name:</h3>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className={styles.fontInputEdit}
+                      defaultValue={profile.result?.lastName}
+                    />
+                  ) : (
+                    <p className={styles.fontBold}>
+                      {profile.result?.lastName}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="grid gap-12 grid-cols-2">
                 <div className={styles.profileBodyNameCont}>
@@ -102,9 +125,7 @@ const Profile = () => {
                       defaultValue="Insurance"
                     />
                   ) : (
-                    <>
-                      <p className={styles.fontBold}>Insurance</p>
-                    </>
+                    <p className={styles.fontBold}>Insurance</p>
                   )}
                 </div>
                 <div className={styles.profileBodyNameCont}>
@@ -116,33 +137,20 @@ const Profile = () => {
                       defaultValue="Agent"
                     />
                   ) : (
-                    <>
-                      <p className={styles.fontBold}>Agent</p>
-                    </>
+                    <p className={styles.fontBold}>Agent</p>
                   )}
                 </div>
               </div>
-
               <div className={styles.profileBodyNameCont}>
                 <h3 className={styles.fontLight}>Mobile Number:</h3>
                 {isEditing ? (
-                  // <div className={styles.flexContainer}>
-                  //   <div className={styles.flexFlag}>
-                  //     <img
-                  //       className={styles.flagPic}
-                  //       src={philFlag}
-                  //       alt="flag"
-                  //     />
-                  //     <span className={styles.countryCode}>+63</span>
-                  //   </div>
                   <input
                     type="text"
                     className={styles.fontInputEdit}
-                    defaultValue="09615698142"
+                    defaultValue={profile.result.phoneNum}
                   />
                 ) : (
-                  // </div>
-                  <p className={styles.fontBold}>09615698142</p>
+                  <p className={styles.fontBold}>{profile.result.phoneNum}</p>
                 )}
               </div>
               <div className={styles.profileBodyNameContEmail}>
@@ -152,19 +160,17 @@ const Profile = () => {
                     <input
                       type="email"
                       className={styles.fontInputEdit}
-                      defaultValue="admin@gmail.com"
+                      defaultValue={profile.result.email}
                     />
                   ) : (
-                    <>
-                      <p className={styles.fontBold}>admin@gmail.com</p>
-                    </>
+                    <p className={styles.fontBold}>{profile.result.email}</p>
                   )}
                 </div>
               </div>
               <div className={styles.flexprofileBodyNameTooltip}>
                 <img src={toolTip} alt="tooltip" />
                 <p className={styles.textLight}>
-                  Your email will be used for sending a booking receipts and
+                  Your email will be used for sending booking receipts and
                   updates of tow factory.
                 </p>
               </div>
