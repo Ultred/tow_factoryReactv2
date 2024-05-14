@@ -17,7 +17,7 @@ const CRNModal = () => {
       toast.error("Please input CRN");
       return;
     }
-    navigate("/dashboard/booknow");
+    navigate("/dashboard/repairOnSite");
     closeModal();
   };
   const handleCRNChange = (e) => {
@@ -38,21 +38,25 @@ const CRNModal = () => {
         </div>
 
         <div className={styles.flexButton}>
-          <Button
-            buttonStyle={"secondary"}
-            type={"submit"}
-            onClick={handleCancel}
-          >
-            Cancel
-          </Button>
-          <Button
-            icon={"check"}
-            onClick={handleProceed}
-            buttonStyle={"primary"}
-            type={"submit"}
-          >
-            Proceed
-          </Button>
+          <div className="w-[40%]">
+            <Button
+              buttonStyle={"secondary"}
+              type={"submit"}
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </div>
+          <div className="w-[60%]">
+            <Button
+              icon={"check"}
+              onClick={handleProceed}
+              buttonStyle={"primary"}
+              type={"submit"}
+            >
+              Proceed
+            </Button>
+          </div>
         </div>
       </form>
     </div>

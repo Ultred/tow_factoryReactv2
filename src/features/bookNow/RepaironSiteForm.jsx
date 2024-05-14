@@ -3,6 +3,7 @@ import InputField from "../../components/InputField";
 import styles from "./RepaironSiteForm.module.css";
 import { FaArrowLeft } from "react-icons/fa6";
 import Button from "../../components/Button";
+import SelectCustomInsurance from "../../components/SelectCustomInsurance";
 const RepaironSiteForm = () => {
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const RepaironSiteForm = () => {
         <div className={styles.marginTop}>
           <div className={styles.flexh2Map}>
             <h2 className={styles.textH2}>Pick-Up Location:</h2>
-            <Link className={styles.flexMap} to={"/map/pickup"}>
+            <Link className={styles.flexMap} to={"/dashboard/pickup"}>
               <img
                 className={styles.MapImage}
                 src="/src/assets/clickMap.svg"
@@ -41,12 +42,7 @@ const RepaironSiteForm = () => {
         </div>
         <div className={styles.marginTop}>
           <h2 className={styles.textH2}>Insurance:</h2>
-          <InputField
-            placeholder={"Insurance"}
-            type={"text"}
-            name={"dropoff"}
-            styletype={"primary"}
-          />
+          <SelectCustomInsurance />
         </div>
         <div className={styles.marginTop}>
           <h2 className={styles.textH2}>Note:</h2>

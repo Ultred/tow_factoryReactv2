@@ -37,6 +37,11 @@
   padding: 1rem;
   border-radius: 0.3rem;
 }
+.redButton {
+  background-color: var(--red) !important;
+  color: var(--white);
+  border-radius: var(--border-radius);
+}
 .buttonCustom1 {
   background-color: var(--primary-color) !important;
   color: var(--white);

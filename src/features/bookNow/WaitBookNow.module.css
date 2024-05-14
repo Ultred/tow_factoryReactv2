@@ -1,0 +1,26 @@
+.waitCont {
+  position: fixed;
+  text-align: center;
+  top: 10vh;
+  left: 0;
+  padding: 1rem 0;
+  right: 0;
+  background-color: var(--blue);
+  color: var(--white);
+}
+.waitingTime {
+}
+.pfont {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.h2font {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.buttonCont {
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  bottom: 10%;
+}

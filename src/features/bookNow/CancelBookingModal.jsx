@@ -1,11 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import styles from "./CancelBookingModal.module.css";
 
 const CancelBookingModal = () => {
+  const navigate = useNavigate();
   const { closeModal } = ModalStoreState();
 
   const handleCancel = () => {
+    closeModal();
+  };
+
+  const handleLeave = () => {
+    navigate("/dashboard/booknow");
     closeModal();
   };
   return (
@@ -22,16 +29,25 @@ const CancelBookingModal = () => {
         </div>
 
         <div className={styles.flexButton}>
-          <Button
-            buttonStyle={"secondary"}
-            type={"submit"}
-            onClick={handleCancel}
-          >
-            Continue
-          </Button>
-          <Button icon={"check"} buttonStyle={"primary"} type={"submit"}>
-            Leave
-          </Button>
+          <div className="w-[40%]">
+            <Button
+              buttonStyle={"secondary"}
+              type={"submit"}
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </div>
+          <div className="w-[60%]">
+            <Button
+              onClick={handleLeave}
+              icon={"check"}
+              buttonStyle={"redButton"}
+              type={"submit"}
+            >
+              Leave
+            </Button>
+          </div>
         </div>
       </div>
     </div>
