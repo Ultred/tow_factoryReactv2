@@ -1,6 +1,7 @@
 import uppHillIcon from "../assets/uphill.svg";
 import { FaCalendar } from "react-icons/fa6";
 import styles from "./Button2Custom.module.css";
+
 const Button2Custom = ({
   onClick,
   children,
@@ -9,6 +10,7 @@ const Button2Custom = ({
   icon,
   isLoading,
   isActive,
+  disabledStyle,
 }) => {
   const handleClick = (event) => {
     event.preventDefault();
@@ -16,6 +18,7 @@ const Button2Custom = ({
       onClick();
     }
   };
+
   const renderIcon = (icon) => {
     switch (icon) {
       case "uphill":
@@ -27,12 +30,28 @@ const Button2Custom = ({
     }
   };
 
+  const renderDisabledStyle = () => {
+    if (!isActive) {
+      switch (disabledStyle) {
+        case "primary":
+          return styles.primaryDisabled;
+        case "secondary":
+          return styles.secondaryDisabled;
+        default:
+          return null;
+      }
+    }
+    return "";
+  };
+
   return (
     <button
-      className={`${styles.button} ${styles[buttonStyle]}`}
+      className={`${styles.button} ${
+        styles[buttonStyle]
+      } ${renderDisabledStyle()}`}
       onClick={handleClick}
       type={type}
-      disabled={isLoading}
+      disabled={!isActive || isLoading}
     >
       {icon && renderIcon(icon)}
       {isLoading ? "Loading..." : children}

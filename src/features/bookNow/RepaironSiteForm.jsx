@@ -3,7 +3,12 @@ import InputField from "../../components/InputField";
 import styles from "./RepaironSiteForm.module.css";
 import { FaArrowLeft } from "react-icons/fa6";
 import Button from "../../components/Button";
-import SelectCustomInsurance from "../../components/SelectCustomInsurance";
+import SelectCustom from "../../components/SelectCustom";
+
+const dataSample = [
+  { name: "Insurance Sample 1", price: "P 3500.00" },
+  { name: "Insurance Sample 2", price: "P 3500.00" },
+];
 const RepaironSiteForm = () => {
   const navigate = useNavigate();
 
@@ -42,7 +47,12 @@ const RepaironSiteForm = () => {
         </div>
         <div className={styles.marginTop}>
           <h2 className={styles.textH2}>Insurance:</h2>
-          <SelectCustomInsurance />
+          <SelectCustom
+            optionSelect={dataSample}
+            placeholder={"Select Insurance"}
+            tooltip={"This Pricing is for those in Metro Manila only"}
+            heading={"Please select who insured the vehicle"}
+          />
         </div>
         <div className={styles.marginTop}>
           <h2 className={styles.textH2}>Note:</h2>

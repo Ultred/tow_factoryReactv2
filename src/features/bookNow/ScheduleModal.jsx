@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./ScheduleModal.module.css";
 import calendarBlue from "../../assets/calendarBlue.svg";
 import Calendar from "react-calendar";
@@ -5,22 +6,52 @@ import "../../page/Calendar.css";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import { ModalStoreState } from "../../context/ModalStoreState";
-import { useState } from "react";
+import { bookingStore } from "../../context/bookingStoreState";
+
 const ScheduleModal = () => {
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState(null);
+  const { bookStateValue, setBookStateValue } = bookingStore();
   const { closeModal } = ModalStoreState();
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    const formattedDate = new Date(date).toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+    });
+    return formattedDate;
+  };
+
   const [showCalendar, setShowCalendar] = useState(false);
   const [showTime, setShowTime] = useState(false);
 
   const handleShowCalendar = () => {
     setShowCalendar((prev) => !prev);
   };
+  const handleSetaSchedule = () => {
+    closeModal();
+  };
+
+  const handleGetTimeValue = (event) => {
+    setBookStateValue({ ...bookStateValue, time: event.target.value });
+    console.log(event.target.value);
+  };
+
+  const handleGetCalendarValue = (value) => {
+    setBookStateValue({ ...bookStateValue, date: formatDate(value) });
+    setDate(value);
+  };
 
   const handleShowTime = () => {
     setShowTime((prev) => !prev);
   };
+
   const handleCancel = () => {
     closeModal();
   };
+
   return (
     <div className={styles.scheduleinfoContainer}>
       <div className={styles.scheduleInfoTop}>
@@ -37,11 +68,19 @@ const ScheduleModal = () => {
           </div>
           <div className="relative">
             <InputField
+              id={"date"}
               icon={"calendarGray"}
               placeholder={"MM/DD/YY"}
               type={"text"}
+              value={bookStateValue.date} // Format the date here
             />
-            {showCalendar && <Calendar className="absolute z-50" />}
+            {showCalendar && (
+              <Calendar
+                value={date}
+                onChange={handleGetCalendarValue}
+                className="absolute z-50"
+              />
+            )}
           </div>
         </div>
         <div className={styles.marginTop}>
@@ -52,7 +91,14 @@ const ScheduleModal = () => {
               <p onClick={handleShowTime}>Select Time Schedule</p>
             </div>
           </div>
-          <InputField icon={"clockGray"} placeholder={"HH:MM"} type={"text"} />
+          <InputField
+            onChange={handleGetTimeValue}
+            icon={"clockGray"}
+            placeholder={"HH:MM"}
+            id={"time"}
+            value={bookStateValue.time}
+            type={"text"}
+          />
         </div>
         <div className={styles.flexButton}>
           <div className="w-[40%]">
@@ -65,7 +111,11 @@ const ScheduleModal = () => {
             </Button>
           </div>
           <div className="w-[60%]">
-            <Button buttonStyle={"primary"} type={"submit"}>
+            <Button
+              onClick={handleSetaSchedule}
+              buttonStyle={"primary"}
+              type={"submit"}
+            >
               Set a Schedule
             </Button>
           </div>

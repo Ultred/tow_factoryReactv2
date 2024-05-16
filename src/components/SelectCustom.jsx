@@ -1,13 +1,21 @@
-import styles from "./SelectCustomInsurance.module.css";
+import { useState, useRef, useEffect } from "react";
+import styles from "./SelectCustom.module.css";
 import sampleInsurance from "../assets/towfactoryLogo.svg";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { MdInfo } from "react-icons/md";
 import Button from "./Button";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
 
-const SelectCustomInsurance = () => {
+const SelectCustom = ({
+  value,
+  placeholder,
+  tooltip,
+  heading,
+  optionSelect,
+  onChange,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
   const dropdownRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -27,9 +35,22 @@ const SelectCustomInsurance = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  const handleValue = () => {
+    if (value) {
+      return value;
+    }
+    if (selectedOption) {
+      return selectedOption.name;
+    }
+    return "";
+  };
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev);
+  };
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    onChange(option); // Invoke onChange with the selected option
   };
 
   return (
@@ -39,8 +60,9 @@ const SelectCustomInsurance = () => {
         onClick={toggleDropdown}
         readOnly
         type="text"
-        placeholder="Select Insurance"
+        placeholder={placeholder}
         className={styles.inputSelect}
+        value={handleValue()}
       />
       <IoMdArrowDropdown
         className={`${showDropdown ? styles.iconInfoUp : styles.iconInfoDown} ${
@@ -56,28 +78,37 @@ const SelectCustomInsurance = () => {
             exit={{ opacity: 0, y: -10 }}
             className={styles.selectContainerDropdown}
           >
-            <h2>Please select who insured the vehicle</h2>
+            <h2>{heading}</h2>
             <div className={styles.flexSimple}>
               <MdInfo />
-
-              <p className={styles.textInfoP}>
-                This Pricing is for those in Metro Manila only
-              </p>
+              <p className={styles.textInfoP}>{tooltip}</p>
             </div>
             <ul className={styles.ulCont}>
-              <li className={styles.liCont}>
-                <div className={styles.flexContInsurance}>
-                  <img
-                    className={styles.imgInsurance}
-                    src={sampleInsurance}
-                    alt="Insurance"
-                  />{" "}
-                  <p>Insurance Sample</p>
-                </div>
-                <p>P 3500.00</p>
-              </li>
+              {optionSelect.map((option, index) => (
+                <li
+                  key={index}
+                  className={`${styles.liCont} ${
+                    selectedOption === option ? styles.active : ""
+                  }`}
+                  onClick={() => handleOptionSelect(option)}
+                >
+                  <div className={styles.flexContInsurance}>
+                    <img
+                      className={styles.imgInsurance}
+                      src={sampleInsurance}
+                      alt="Insurance"
+                    />
+                    <p className={styles.textInsurance}>{option.name}</p>
+                  </div>
+                  <p className={styles.textPrice}>{option.price}</p>
+                </li>
+              ))}
             </ul>
-            <Button buttonStyle={"primary"} type={"submit"}>
+            <Button
+              onClick={toggleDropdown}
+              buttonStyle={"primary"}
+              type={"submit"}
+            >
               Confirm
             </Button>
           </motion.div>
@@ -87,4 +118,4 @@ const SelectCustomInsurance = () => {
   );
 };
 
-export default SelectCustomInsurance;
+export default SelectCustom;

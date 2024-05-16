@@ -30,7 +30,9 @@
   transform: translateY(-50%) rotate(180deg);
 }
 .flexSimple {
+  gap: 0.5rem;
   display: flex;
+  padding: 0.6rem 0;
   align-items: center;
   color: var(--status-gray);
   font-style: italic;
@@ -44,7 +46,7 @@
   z-index: 10;
   -webkit-box-shadow: 6px -2px 25px -9px rgba(201, 201, 201, 1);
   -moz-box-shadow: 6px -2px 25px -9px rgba(201, 201, 201, 1);
-  box-shadow: 6px -2px 25px -9px rgba(201, 201, 201, 1);
+  box-shadow: 0px 3px 2px 2px rgba(83, 83, 83, 0.25);
 }
 .imgInsurance {
   height: 2.4rem;
@@ -54,20 +56,36 @@
   outline: solid var(--blue) 1px;
 }
 .textInfoP {
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 .ulCont {
+  margin: 1rem 0;
 }
 .liCont {
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  padding: 0.5rem 0.9rem;
 }
-
+.liCont.active {
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 999px;
+}
 .flexContInsurance {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 .flexContInsurance p {
+}
+.textInsurance {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.textPrice {
+  font-weight: 700;
+  font-size: 0.9rem;
 }

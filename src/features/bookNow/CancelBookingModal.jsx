@@ -2,17 +2,20 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import styles from "./CancelBookingModal.module.css";
+import { bookingStore } from "../../context/bookingStoreState";
 
 const CancelBookingModal = () => {
   const navigate = useNavigate();
   const { closeModal } = ModalStoreState();
+  const { clearBookStateValue } = bookingStore();
 
   const handleCancel = () => {
     closeModal();
   };
 
   const handleLeave = () => {
-    navigate("/dashboard/booknow");
+    navigate("/dashboard");
+    clearBookStateValue();
     closeModal();
   };
   return (

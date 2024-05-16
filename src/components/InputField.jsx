@@ -69,6 +69,7 @@ const InputField = ({
         className={renderStyles(styletype, !!icon)}
         placeholder={placeholder}
         onChange={onChange}
+        inputMode={type === "number" ? "numeric" : "text"}
       />
     </div>
   );
