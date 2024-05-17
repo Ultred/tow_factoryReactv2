@@ -17,6 +17,7 @@ const dataSample = [
 ];
 const BookForm = () => {
   const { bookStateValue, setBookStateValue } = bookingStore();
+  const [loadingAmount, setLoadingAmount] = useState(false);
   const [showETA, setShowETA] = useState(false);
   const { openModal } = ModalStoreState();
   const navigate = useNavigate();
@@ -56,6 +57,10 @@ const BookForm = () => {
       bookStateValue;
     if (pickUpPlaceName && dropOffPlaceName && unit && eon && note) {
       setShowETA(true);
+      setLoadingAmount(true);
+      setTimeout(() => {
+        setLoadingAmount(false);
+      }, 1000);
     }
   }, [bookStateValue]);
 
@@ -155,10 +160,20 @@ const BookForm = () => {
         {showETA && (
           <>
             <p className={styles.fontP}>
-              ETA: <span className={styles.textFontBlue}>10-15 Mins</span>
+              ETA:
+              {loadingAmount ? (
+                <span className={styles.textFontBlue}>Loading...</span>
+              ) : (
+                <span className={styles.textFontBlue}>10-15 min</span>
+              )}
             </p>
             <p className={styles.fontP}>
-              Amount: <span className={styles.textFontBlue}>P1500</span>
+              Amount:
+              {loadingAmount ? (
+                <span className={styles.textFontBlue}>Loading...</span>
+              ) : (
+                <span className={styles.textFontBlue}>P1500</span>
+              )}
             </p>
           </>
         )}

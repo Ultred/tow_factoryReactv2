@@ -1,0 +1,57 @@
+.notificationModalContainer {
+  max-width: 546px;
+}
+
+.notificationModalTop {
+  display: flex;
+  background-color: var(--primary-color);
+  border-radius: 1rem 1rem 0 0;
+  padding: 0.8rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+.notificationModalh2 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.notificationModalviewDetails {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.notificationModalData {
+  padding: 1rem;
+}
+.notificationModalButtons {
+  display: flex;
+  padding: 1rem;
+  gap: 3rem;
+}
+.notificationModalLocation {
+  background-color: #e8e5f4;
+  padding: 0.5rem 1rem;
+}
+.boldtext {
+  font-weight: 700;
+}
+.fontBoldh {
+  font-weight: 700;
+}
+.fontBlueP {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+}
+.flexNotif {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.flexTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0.8rem 0.8rem 0.8rem -2rem;
+}

@@ -6,4 +6,5 @@ export const savePosition = create((set) => ({
 
   setPickUpPosition: (position) => set({ pickUpPosition: position }),
   setDropOffPosition: (position) => set({ dropOffPosition: position }),
+  clearPositionState: () => set({ pickUpPosition: [], dropOffPosition: [] }),
 }));

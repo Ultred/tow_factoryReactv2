@@ -3,12 +3,13 @@ import Button from "../../components/Button";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import styles from "./CancelBookingModal.module.css";
 import { bookingStore } from "../../context/bookingStoreState";
+import { savePosition } from "../../context/positionMapState";
 
 const CancelBookingModal = () => {
   const navigate = useNavigate();
   const { closeModal } = ModalStoreState();
   const { clearBookStateValue } = bookingStore();
-
+  const { clearPositionState } = savePosition();
   const handleCancel = () => {
     closeModal();
   };
@@ -16,6 +17,7 @@ const CancelBookingModal = () => {
   const handleLeave = () => {
     navigate("/dashboard");
     clearBookStateValue();
+    clearPositionState();
     closeModal();
   };
   return (
