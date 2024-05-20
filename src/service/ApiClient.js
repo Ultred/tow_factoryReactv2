@@ -10,8 +10,13 @@ const getUserId = () => {
   return userId;
 };
 
+const redirectToLogin = () => {
+  localStorage.removeItem("token");
+  window.location.href = "/login";
+};
+
 const axiosConfig = () => {
-  const token = useAuthStore.getState().token;
+  const token = useAuthStore.getState().token || localStorage.getItem("token");
   return {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,6 +44,9 @@ const makeRequest = async (url, method, data) => {
 
     return response.data;
   } catch (error) {
+    if (error.response?.data?.message === "jwt expired") {
+      redirectToLogin();
+    }
     const customError = error;
     throw new Error(customError.response?.data?.message || "An error occurred");
   }
@@ -55,3 +63,6 @@ export const putChangePassword = async (data) =>
 
 export const getSingleProfile = async () =>
   makeRequest(`api/v1/users/${getUserId()}/findById`, "get");
+
+export const postCreateBookings = async (data) =>
+  makeRequest(`api/v1/bookings/create`, "post", data);

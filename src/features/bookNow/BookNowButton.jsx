@@ -5,11 +5,14 @@ import Uphill from "../../assets/uphill.svg";
 import { useNavigate } from "react-router-dom";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import CRNModal from "./CRNModal";
+import { bookingStore } from "../../context/bookingStoreState";
 const BookNowButton = () => {
+  const { bookStateValue, setBookStateValue } = bookingStore();
   const { openModal } = ModalStoreState();
   const navigate = useNavigate();
 
   const handleBookNow = () => {
+    setBookStateValue({ ...bookStateValue, serviceType: "Express" });
     navigate("/dashboard/booknow");
   };
   // const handleRepairOnSite = () => {
@@ -17,7 +20,9 @@ const BookNowButton = () => {
   // };
 
   const handleCRNModalShow = () => {
-    openModal(<CRNModal />);
+    setBookStateValue({ ...bookStateValue, serviceType: "Repair on-site" });
+
+    //openModal(<CRNModal />);
   };
   return (
     <div className={styles.flexBookNow}>

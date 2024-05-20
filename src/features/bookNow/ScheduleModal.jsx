@@ -7,6 +7,7 @@ import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import { bookingStore } from "../../context/bookingStoreState";
+import toast from "react-hot-toast";
 
 const ScheduleModal = () => {
   const [date, setDate] = useState(null);
@@ -31,16 +32,22 @@ const ScheduleModal = () => {
     setShowCalendar((prev) => !prev);
   };
   const handleSetaSchedule = () => {
+    const { scheduledDate, scheduledTime } = bookStateValue;
+    if (!scheduledDate || !scheduledTime) {
+      toast.error("Please Input All Field");
+      return;
+    }
+    toast.success("Schedule Saved");
     closeModal();
   };
 
   const handleGetTimeValue = (event) => {
-    setBookStateValue({ ...bookStateValue, time: event.target.value });
+    setBookStateValue({ ...bookStateValue, scheduledTime: event.target.value });
     console.log(event.target.value);
   };
 
   const handleGetCalendarValue = (value) => {
-    setBookStateValue({ ...bookStateValue, date: formatDate(value) });
+    setBookStateValue({ ...bookStateValue, scheduledDate: formatDate(value) });
     setDate(value);
   };
 
@@ -68,11 +75,11 @@ const ScheduleModal = () => {
           </div>
           <div className="relative">
             <InputField
-              id={"date"}
+              id={"scheduledDate"}
               icon={"calendarGray"}
               placeholder={"MM/DD/YY"}
               type={"text"}
-              value={bookStateValue.date} // Format the date here
+              value={bookStateValue.scheduledDate} // Format the date here
             />
             {showCalendar && (
               <Calendar
@@ -95,8 +102,8 @@ const ScheduleModal = () => {
             onChange={handleGetTimeValue}
             icon={"clockGray"}
             placeholder={"HH:MM"}
-            id={"time"}
-            value={bookStateValue.time}
+            id={"scheduledTime"}
+            value={bookStateValue.scheduledTime}
             type={"text"}
           />
         </div>

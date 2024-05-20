@@ -6,21 +6,39 @@ import { ModalStoreState } from "../../context/ModalStoreState";
 import ScheduleModal from "./ScheduleModal";
 import Button2Custom from "../../components/Button2Custom";
 import { useEffect, useState } from "react";
+
 import SelectCustom from "../../components/SelectCustom";
 import CancelBookingModal from "./CancelBookingModal";
 import { bookingStore } from "../../context/bookingStoreState";
 import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
+import * as apiClient from "../../service/ApiClient";
+import { data } from "autoprefixer";
 
 const dataSample = [
   { name: "Unit Sample 1", price: "P 3500.00" },
   { name: "Unit Sample 2", price: "P 3500.00" },
 ];
 const BookForm = () => {
+  const navigate = useNavigate();
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["createBooking"],
+    mutationFn: apiClient.postCreateBookings,
+    onSuccess: (response) => {
+      console.log(response);
+      navigate("/dashboard/wait");
+    },
+    onError: (error) => {
+      toast.error(error.message || "Something went wrong. Please try again.");
+    },
+  });
+
   const { bookStateValue, setBookStateValue } = bookingStore();
+
   const [loadingAmount, setLoadingAmount] = useState(false);
   const [showETA, setShowETA] = useState(false);
   const { openModal } = ModalStoreState();
-  const navigate = useNavigate();
 
   const handleOpenScheduleModal = () => {
     openModal(<ScheduleModal />);
@@ -29,12 +47,63 @@ const BookForm = () => {
   const handleNavigateBack = () => {
     openModal(<CancelBookingModal />);
   };
+  const handleSendBookNowInFormData = () => {
+    const {
+      dropOffLat,
+      dropOffLong,
+      pickUpLat,
+      pickUpLong,
+      insuranceId = "",
+      unitsId = "6ce37c2d-40ce-433c-b483-95e359791557",
+      //Remove limiter for this
+      scheduledTime = "14:00",
+      scheduledDate = "2024-04-25",
+      eon,
+      isScheduled = false,
+      note,
+      serviceType,
+    } = bookStateValue;
+
+    //Static First To Make Sure
+    const manufacturer = "Honda";
+    const plateNum = "ABC123";
+    const deliveryTime = "14:00";
+    const paymentMethod = "Paypal";
+    const formData = new FormData();
+
+    formData.append(
+      "data",
+      JSON.stringify({
+        dropOffLat,
+        dropOffLong,
+        pickUpLat,
+        pickUpLong,
+        unitsId,
+        scheduledTime,
+        scheduledDate,
+        insuranceId,
+        eon,
+        isScheduled,
+        note,
+        deliveryTime,
+        serviceType,
+        paymentMethod,
+        manufacturer,
+        plateNum,
+      })
+    );
+    console.log(bookStateValue);
+
+    mutate(formData);
+  };
 
   const handleBookNow = () => {
     const { pickUpPlaceName, dropOffPlaceName, unit, eon, note } =
       bookStateValue;
+    //Main Booking Found Here -------------------------------
     if (pickUpPlaceName && dropOffPlaceName && unit && eon && note) {
-      navigate("/dashboard/wait");
+      handleSendBookNowInFormData();
+      //navigate("/dashboard/wait");
     } else {
       toast.error("Please fill in all required fields");
     }
@@ -186,13 +255,13 @@ const BookForm = () => {
           onClick={handleOpenScheduleModal}
           buttonStyle={"secondary"}
         >
-          {bookStateValue.date && bookStateValue.time ? (
+          {bookStateValue.scheduledDate && bookStateValue.scheduledTime ? (
             <div className={styles.buttonSchedule}>
               <h2>
-                Date: <span>{bookStateValue.date}</span>
+                Date: <span>{bookStateValue.scheduledDate}</span>
               </h2>
               <h2>
-                Time: <span>{bookStateValue.time}</span>
+                Time: <span>{bookStateValue.scheduledTime}</span>
               </h2>
             </div>
           ) : (
@@ -200,6 +269,7 @@ const BookForm = () => {
           )}
         </Button2Custom>
         <Button2Custom
+          isLoading={isPending}
           isActive={canBookNow}
           disabledStyle={"secondary"}
           type={"submit"}
