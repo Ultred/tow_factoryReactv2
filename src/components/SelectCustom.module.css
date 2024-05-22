@@ -58,6 +58,9 @@
   font-size: 0.9rem;
 }
 .ulCont {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin: 1rem 0;
 }
 .liCont {
@@ -65,6 +68,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  height: 3rem;
   padding: 0.5rem 0.9rem;
 }
 .liCont.active {

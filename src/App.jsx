@@ -12,10 +12,11 @@ import SignUp from "./page/SignUp";
 import AppLayout from "./layout/AppLayout";
 import Profile from "./page/Profile";
 import MapLayout from "./layout/MapLayout";
-import RepaironSiteForm from "./features/bookNow/RepaironSiteForm";
+import RepaironSiteForm from "./features/repairOnSite/RepaironSiteForm";
 import { Toaster } from "react-hot-toast";
 import SignUpSuccess from "./page/SignUpSuccess";
 import WaitBookNow from "./features/bookNow/WaitBookNow";
+import PickUpButtonOnSite from "./features/repairOnSite/PickUpButtonOnSite";
 
 function App() {
   const router = createBrowserRouter([
@@ -45,6 +46,11 @@ function App() {
           path: "pickup",
           element: <PickUpButton />,
         },
+        {
+          path: "pickuponsite",
+          element: <PickUpButtonOnSite />,
+        },
+
         {
           path: "dropoff",
           element: <DropOffButton />,

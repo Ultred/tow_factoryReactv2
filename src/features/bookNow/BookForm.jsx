@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import styles from "../bookNow/BookForm.module.css";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -6,22 +6,26 @@ import { ModalStoreState } from "../../context/ModalStoreState";
 import ScheduleModal from "./ScheduleModal";
 import Button2Custom from "../../components/Button2Custom";
 import { useEffect, useState } from "react";
-
 import SelectCustom from "../../components/SelectCustom";
 import CancelBookingModal from "./CancelBookingModal";
 import { bookingStore } from "../../context/bookingStoreState";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import * as apiClient from "../../service/ApiClient";
-import { data } from "autoprefixer";
+import useCalculateETA from "../../hooks/useCalculateETA ";
 
 const dataSample = [
   { name: "Unit Sample 1", price: "P 3500.00" },
   { name: "Unit Sample 2", price: "P 3500.00" },
 ];
-const BookForm = () => {
-  const navigate = useNavigate();
 
+const BookForm = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { eta, calculateETA, error } = useCalculateETA(
+    "AIzaSyA06ZsF5FHeRM-nEax-v0VsOezcS69DsAY"
+  );
+  //Put google Map API key HERE
   const { mutate, isPending } = useMutation({
     mutationKey: ["createBooking"],
     mutationFn: apiClient.postCreateBookings,
@@ -35,7 +39,6 @@ const BookForm = () => {
   });
 
   const { bookStateValue, setBookStateValue } = bookingStore();
-
   const [loadingAmount, setLoadingAmount] = useState(false);
   const [showETA, setShowETA] = useState(false);
   const { openModal } = ModalStoreState();
@@ -121,17 +124,32 @@ const BookForm = () => {
     setBookStateValue({ ...bookStateValue, note: event.target.value });
   };
 
+  const handleCalculateETA = () => {
+    const { pickUpPlaceName, dropOffPlaceName } = bookStateValue;
+    calculateETA(pickUpPlaceName, dropOffPlaceName);
+  };
+
   useEffect(() => {
     const { pickUpPlaceName, dropOffPlaceName, unit, eon, note } =
       bookStateValue;
     if (pickUpPlaceName && dropOffPlaceName && unit && eon && note) {
       setShowETA(true);
       setLoadingAmount(true);
+      handleCalculateETA();
       setTimeout(() => {
         setLoadingAmount(false);
       }, 1000);
     }
   }, [bookStateValue]);
+
+  //UseEffect To Get the Service Type
+  useEffect(() => {
+    if (location.pathname === "/dashboard/booknow") {
+      setBookStateValue({ ...bookStateValue, serviceType: "Express" });
+    } else if (location.pathname === "/dashboard/repaironsite") {
+      setBookStateValue({ ...bookStateValue, serviceType: "Repair on-site" });
+    }
+  }, []);
 
   const canBookNow =
     bookStateValue.pickUpPlaceName &&
@@ -139,6 +157,7 @@ const BookForm = () => {
     bookStateValue.unit &&
     bookStateValue.eon &&
     bookStateValue.note;
+
   return (
     <div>
       <div onClick={handleNavigateBack} className={styles.flexTopBack}>
@@ -233,7 +252,9 @@ const BookForm = () => {
               {loadingAmount ? (
                 <span className={styles.textFontBlue}>Loading...</span>
               ) : (
-                <span className={styles.textFontBlue}>10-15 min</span>
+                <span className={styles.textFontBlue}>
+                  {error ? error : eta}
+                </span>
               )}
             </p>
             <p className={styles.fontP}>

@@ -13,6 +13,7 @@ const SelectCustom = ({
   heading,
   optionSelect,
   onChange,
+  haveImage,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -93,11 +94,14 @@ const SelectCustom = ({
                   onClick={() => handleOptionSelect(option)}
                 >
                   <div className={styles.flexContInsurance}>
-                    <img
-                      className={styles.imgInsurance}
-                      src={sampleInsurance}
-                      alt="Insurance"
-                    />
+                    {haveImage && (
+                      <img
+                        className={styles.imgInsurance}
+                        src={sampleInsurance}
+                        alt="Insurance"
+                      />
+                    )}
+
                     <p className={styles.textInsurance}>{option.name}</p>
                   </div>
                   <p className={styles.textPrice}>{option.price}</p>

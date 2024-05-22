@@ -31,7 +31,6 @@ const Map = () => {
   const location = useLocation();
   const [markerPosition, setMarkerPosition] = useState(center);
   const [directionsResponse, setDirectionsResponse] = useState(null);
-  const [showDirectionLink, setShowDirectionLink] = useState(false);
   const { setBookStateValue, bookStateValue } = bookingStore();
   const {
     setPickUpPosition,
@@ -96,12 +95,23 @@ const Map = () => {
       };
       setDropOffPosition({ ...newPosition, placeName });
       setBookStateValue({ ...bookStateValue, ...dropOFFPositionSave });
+    } else if (location.pathname === "/dashboard/pickuponsite") {
+      const pickUpPositionSaveOnSite = {
+        pickUpLat: e.latLng.lat(),
+        pickUpLong: e.latLng.lng(),
+        pickUpPlaceName: placeName,
+      };
+      setBookStateValue({ ...bookStateValue, ...pickUpPositionSaveOnSite });
     }
   };
 
   const renderMarker =
     location.pathname === "/dashboard/pickup" ||
-    location.pathname === "/dashboard/dropoff";
+    location.pathname === "/dashboard/dropoff" ||
+    location.pathname === "/dashboard/pickuponsite";
+
+  const renderShowMarkeronRepaironSite =
+    location.pathname === "/dashboard/repaironsite";
 
   return isLoaded ? (
     <>
@@ -115,13 +125,14 @@ const Map = () => {
         }}
         className={styles.mapContainer}
       >
-        {renderMarker && (
+        {(renderMarker || renderShowMarkeronRepaironSite) && (
           <Marker
             position={markerPosition}
-            draggable
+            draggable={!renderShowMarkeronRepaironSite}
             onDragEnd={handleDragEnd}
           />
         )}
+
         {directionsResponse && (
           <DirectionsRenderer
             options={directionsRendererOptions}

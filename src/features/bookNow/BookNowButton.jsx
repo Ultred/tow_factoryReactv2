@@ -21,7 +21,7 @@ const BookNowButton = () => {
 
   const handleCRNModalShow = () => {
     setBookStateValue({ ...bookStateValue, serviceType: "Repair on-site" });
-
+    navigate("/dashboard/repaironsite");
     //openModal(<CRNModal />);
   };
   return (
