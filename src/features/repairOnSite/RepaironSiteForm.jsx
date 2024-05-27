@@ -2,24 +2,31 @@ import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../components/InputField";
 import styles from "./RepaironSiteForm.module.css";
 import { FaArrowLeft } from "react-icons/fa6";
-import Button from "../../components/Button";
 import SelectCustom from "../../components/SelectCustom";
 import { bookingStore } from "../../context/bookingStoreState";
 import { ModalStoreState } from "../../context/ModalStoreState";
 import CancelBookingModal from "../bookNow/CancelBookingModal";
 import ScheduleModalOnsite from "./ScheduleModalOnsite";
+import * as apiClient from "../../service/ApiClient";
 import Button2Custom from "../../components/Button2Custom";
+import { useQuery } from "@tanstack/react-query";
 
 const dataSample = [
-  { name: "Insurance Sample 1", price: "P 3500.00" },
-  { name: "Insurance Sample 2", price: "P 3500.00" },
+  { name: "Insurance Sample 1", price: "3500.00" },
+  { name: "Insurance Sample 2", price: "3500.00" },
 ];
 const RepaironSiteForm = () => {
   const { bookStateValue } = bookingStore();
   const { openModal } = ModalStoreState();
   const navigate = useNavigate();
 
+  const { data: insuranceAll, isLoading } = useQuery({
+    queryKey: ["getInsuranceAll"],
+    queryFn: apiClient.getInsuranceAll,
+    refetchOnWindowFocus: false,
+  });
   const handleNavigateBack = () => {
+    //console.log(insuranceAll?.result);
     openModal(<CancelBookingModal />);
   };
 
@@ -65,7 +72,7 @@ const RepaironSiteForm = () => {
         <div className={styles.marginTop}>
           <h2 className={styles.textH2}>Insurance:</h2>
           <SelectCustom
-            optionSelect={dataSample}
+            optionSelect={insuranceAll?.result}
             placeholder={"Select Insurance"}
             tooltip={"This Pricing is for those in Metro Manila only"}
             heading={"Please select who insured the vehicle"}

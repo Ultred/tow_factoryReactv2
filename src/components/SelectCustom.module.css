@@ -91,3 +91,39 @@
   font-weight: 700;
   font-size: 0.9rem;
 }
+.slider {
+  overflow-x: auto;
+  height: 10rem;
+  scrollbar-color: var(--primary-color) var(--white);
+  scrollbar-width: thin;
+}
+.slider::-webkit-scrollbar {
+  width: 10px; /* You can adjust the width as needed */
+}
+
+.slider::-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+/* Opera */
+/* Blink (Opera) */
+.slider::-webkit-scrollbar-track {
+  background: #ff0000;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+/* Hide scrollbar buttons (arrows) */
+.slider::-webkit-scrollbar-button {
+  display: none;
+}
+.slider::-moz-scrollbar-button {
+  /* Firefox */
+  display: none;
+}

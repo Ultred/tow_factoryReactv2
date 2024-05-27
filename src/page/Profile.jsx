@@ -92,11 +92,11 @@ const Profile = () => {
                     <input
                       type="text"
                       className={styles.fontInputEdit}
-                      defaultValue={profile.result.firstName}
+                      defaultValue={profile?.result?.firstName}
                     />
                   ) : (
                     <p className={styles.fontBold}>
-                      {profile.result.firstName}
+                      {profile?.result?.firstName}
                     </p>
                   )}
                 </div>
@@ -106,11 +106,11 @@ const Profile = () => {
                     <input
                       type="text"
                       className={styles.fontInputEdit}
-                      defaultValue={profile.result?.lastName}
+                      defaultValue={profile?.result?.lastName}
                     />
                   ) : (
                     <p className={styles.fontBold}>
-                      {profile.result?.lastName}
+                      {profile?.result?.lastName}
                     </p>
                   )}
                 </div>
@@ -147,10 +147,10 @@ const Profile = () => {
                   <input
                     type="text"
                     className={styles.fontInputEdit}
-                    defaultValue={profile.result.phoneNum}
+                    defaultValue={profile?.result?.phoneNum}
                   />
                 ) : (
-                  <p className={styles.fontBold}>{profile.result.phoneNum}</p>
+                  <p className={styles.fontBold}>{profile?.result?.phoneNum}</p>
                 )}
               </div>
               <div className={styles.profileBodyNameContEmail}>
@@ -160,10 +160,10 @@ const Profile = () => {
                     <input
                       type="email"
                       className={styles.fontInputEdit}
-                      defaultValue={profile.result.email}
+                      defaultValue={profile?.result?.email}
                     />
                   ) : (
-                    <p className={styles.fontBold}>{profile.result.email}</p>
+                    <p className={styles.fontBold}>{profile?.result?.email}</p>
                   )}
                 </div>
               </div>

@@ -10,14 +10,9 @@ import SelectCustom from "../../components/SelectCustom";
 import CancelBookingModal from "./CancelBookingModal";
 import { bookingStore } from "../../context/bookingStoreState";
 import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import * as apiClient from "../../service/ApiClient";
 import useCalculateETA from "../../hooks/useCalculateETA ";
-
-const dataSample = [
-  { name: "Unit Sample 1", price: "P 3500.00" },
-  { name: "Unit Sample 2", price: "P 3500.00" },
-];
 
 const BookForm = () => {
   const location = useLocation();
@@ -38,6 +33,12 @@ const BookForm = () => {
     },
   });
 
+  const { data: unitsAll, isLoading } = useQuery({
+    queryKey: ["getUnitsAll"],
+    queryFn: apiClient.getUnitAll,
+    refetchOnWindowFocus: false,
+  });
+
   const { bookStateValue, setBookStateValue } = bookingStore();
   const [loadingAmount, setLoadingAmount] = useState(false);
   const [showETA, setShowETA] = useState(false);
@@ -48,6 +49,7 @@ const BookForm = () => {
   };
 
   const handleNavigateBack = () => {
+    //console.log(unitsAll.result);
     openModal(<CancelBookingModal />);
   };
   const handleSendBookNowInFormData = () => {
@@ -224,7 +226,7 @@ const BookForm = () => {
           <h2 className={styles.textH2}>Unit:</h2>
           <SelectCustom
             onChange={handleGetUnitValue}
-            optionSelect={dataSample}
+            optionSelect={unitsAll?.result}
             value={bookStateValue.unit}
             placeholder={"Select Unit"}
             tooltip={"This Pricing is for those in Metro Manila only"}

@@ -66,3 +66,8 @@ export const getSingleProfile = async () =>
 
 export const postCreateBookings = async (data) =>
   makeRequest(`api/v1/bookings/create`, "post", data);
+
+export const getUnitAll = async () => makeRequest(`api/v1/units/all`, "get");
+
+export const getInsuranceAll = async () =>
+  makeRequest(`api/v1/insurance/all`, "get");

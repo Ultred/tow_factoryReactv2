@@ -54,3 +54,41 @@
   display: flex;
   gap: 0.9rem;
 }
+.NotifIcon {
+  position: relative;
+  background-color: var(--primary-color);
+  height: 2.7rem;
+  width: 2.7rem;
+  margin: 0 auto;
+  padding: 0.3rem;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileIcon2 {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+.shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  75% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

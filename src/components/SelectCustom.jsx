@@ -84,30 +84,33 @@ const SelectCustom = ({
               <MdInfo />
               <p className={styles.textInfoP}>{tooltip}</p>
             </div>
-            <ul className={styles.ulCont}>
-              {optionSelect.map((option, index) => (
-                <li
-                  key={index}
-                  className={`${styles.liCont} ${
-                    selectedOption === option ? styles.active : ""
-                  }`}
-                  onClick={() => handleOptionSelect(option)}
-                >
-                  <div className={styles.flexContInsurance}>
-                    {haveImage && (
-                      <img
-                        className={styles.imgInsurance}
-                        src={sampleInsurance}
-                        alt="Insurance"
-                      />
-                    )}
+            <div className={styles.slider}>
+              <ul className={styles.ulCont}>
+                {optionSelect?.map((option, index) => (
+                  <li
+                    key={index}
+                    className={`${styles.liCont} ${
+                      selectedOption === option ? styles.active : ""
+                    }`}
+                    onClick={() => handleOptionSelect(option)}
+                  >
+                    <div className={styles.flexContInsurance}>
+                      {haveImage && (
+                        <img
+                          className={styles.imgInsurance}
+                          src={sampleInsurance}
+                          alt="Insurance"
+                        />
+                      )}
 
-                    <p className={styles.textInsurance}>{option.name}</p>
-                  </div>
-                  <p className={styles.textPrice}>{option.price}</p>
-                </li>
-              ))}
-            </ul>
+                      <p className={styles.textInsurance}>{option.name}</p>
+                    </div>
+                    <p className={styles.textPrice}>₱{option.price}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <Button
               onClick={toggleDropdown}
               buttonStyle={"primary"}
