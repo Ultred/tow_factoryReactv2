@@ -29,7 +29,7 @@ const BookSuccessfullNormalModal = () => {
         <h2 className={styles.notificationModalh2}>Booked</h2>
       </div>
       <div>
-        <p>
+        <p className="text-center py-5">
           Congratulations! Your driver is on the way now. The arrival time of
           your truck driver is
         </p>
